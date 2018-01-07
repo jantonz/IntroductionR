@@ -55,6 +55,7 @@ Es poden fer moltes correlacions, però recordeu que correlació no implica caus
 
 Check this out:
 - [swirl](http://swirlstats.com/scn/)
+- [manipulate](https://support.rstudio.com/hc/en-us/articles/200551906-Interactive-Plotting-with-Manipulate)
 - [Shiny](https://shiny.rstudio.com/)
 - [R Notebook](http://rmarkdown.rstudio.com/r_notebooks.html)
 - [DataCamp](https://www.datacamp.com/)
