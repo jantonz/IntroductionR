@@ -27,6 +27,7 @@ La seva instal·lació és molt fàcil, i millor que es faci per ordre. La feina
 
 Dins d'R hi ha diverses petites bases de dades per jugar una mica. Una de molt típica es diu _mtcars_. Podeu provar d'aplicar-hi algunes funcions.
 
+```
 `str`
 `head`
 `tail`
@@ -34,6 +35,7 @@ Dins d'R hi ha diverses petites bases de dades per jugar una mica. Una de molt t
 `dim`
 `View`
 `class`
+```
 
 ### 2.2. Data _wrangling_
 
