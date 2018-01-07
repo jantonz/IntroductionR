@@ -4,7 +4,7 @@ Des d'aquí podreu seguir el curs sencer. És un bon lloc per començar a aprend
 
 Aquesta web utilitza [Markdown](https://daringfireball.net/projects/markdown/) i està penjada a [GitHub](https://github.com/jantonz/IntroductionR). Un cop completat el curs podreu proposar canvis a la web i podran ser implementats a la següent edició. En llenguatge GitHub, els vostres _commits_ podran ser _pushed_ a la _branch_ principal... ja hi arribarem!
 
-## 1. Introducció a R
+# 1. Introducció a R
 ### 1.1. Primers passos en R (fora d'R)
 
 Els primers passos els farem en [aquesta web](http://tryr.codeschool.com/). Es tracta d'una molt bona manera de fer els primers passos en diversos llenguatges de programació, per si després us animeu a aprendre Python, per exemple.
@@ -21,20 +21,20 @@ La seva instal·lació és molt fàcil, i millor que es faci per ordre. La feina
 
 És bon moment per provar algunes de les **funcions** que hem après. [Aquí](https://www.rstudio.com/wp-content/uploads/2016/05/base-r.pdf) teniu una _chuleta_ (_cheat sheet_ en anglès) amb moltes funcions per provar.
 
-## 2. Lectura i anàlisi dades
+# 2. Lectura i anàlisi dades
 
 ### 2.1. Funcions bàsiques
 
 Dins d'R hi ha diverses petites bases de dades per jugar una mica. Una de molt típica es diu _mtcars_. Podeu provar d'aplicar-hi algunes funcions.
 
 ```
-`str`
-`head`
-`tail`
-`summary`
-`dim`
-`View`
-`class`
+str()
+head()
+tail()
+summary()
+dim()
+View()
+class()
 ```
 
 ### 2.2. Data _wrangling_
@@ -43,29 +43,8 @@ El paquet _dplyr_ és molt útil per manipular dades i es pot descarregar via `i
 
 Un _cheat sheet_ d'aquest paquet es troba [aquí](https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf).
 
+Passarem una bona estona treballant els apartats 1, 2a-c i 3a-c d'[aquest exercici](http://bit.ly/2Cjm0y8). Es tracta d’un exercici que ens fa treballar amb dades sobre els vols que van volar des dels aeroports JFK, LGA i EWR de Nova York l’any 2013.
 
+# 3. Representació gràfica
 
-## 3. Representació gràfica
-
-
-### Markdown
-
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
+Per a visualitzar dades amb R, el paquet més utilitzat és _ggplot2_. El seu _cheat sheet_ es troba [aquí](https://www.rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.pdf) i l'utilitzarem per acabar l'exercici anterior.
