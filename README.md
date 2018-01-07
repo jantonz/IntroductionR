@@ -1,8 +1,13 @@
-## Welcome to GitHub Pages
+## Benvinguts/des a la pàgina del curs _R, visualització gràfica i Big Data_
 
-You can use the [editor on GitHub](https://github.com/jantonz/IntroductionR/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+Des d'aquí podreu seguir el curs sencer. És un bon lloc per començar a aprendre R!
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+Aquesta web utilitza [Markdown](https://daringfireball.net/projects/markdown/) i està penjada a [GitHub](https://github.com/jantonz/IntroductionR). Un cop completat el curs podreu proposar canvis a la web i podran ser implementats a la següent edició. En llenguatge GitHub, els vostres _commits_ podran ser _pushed_ a la _branch_ principal... ja hi arribarem!
+
+## 1. Primers passos en R
+
+
+
 
 ### Markdown
 
