@@ -48,3 +48,14 @@ Passarem una bona estona treballant els apartats 1, 2a-c i 3a-c d'[aquest exerci
 # 3. Representació gràfica
 
 Per a visualitzar dades amb R, el paquet més utilitzat és _ggplot2_. El seu _cheat sheet_ es troba [aquí](https://www.rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.pdf) i l'utilitzarem per acabar l'exercici anterior.
+
+Es poden fer moltes correlacions, però recordeu que correlació no implica causalitat: [Spurious correlations](http://www.tylervigen.com/spurious-correlations). Aquí hi podeu trobar algunes informacions molt interessants, com que el consum de formatge per càpita es correlaciona en un 95% amb el nombre de persones mortes per per ofegament en els llençols. Alerta!
+
+# 4. Següents passos
+
+Check this out:
+- [swirl](http://swirlstats.com/scn/)
+- [Shiny](https://shiny.rstudio.com/)
+- [R Notebook](http://rmarkdown.rstudio.com/r_notebooks.html)
+- [DataCamp](https://www.datacamp.com/)
+- [Coursera](https://www.coursera.org/specializations/jhu-data-science)
