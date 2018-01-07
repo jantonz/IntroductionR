@@ -4,9 +4,46 @@ Des d'aquí podreu seguir el curs sencer. És un bon lloc per començar a aprend
 
 Aquesta web utilitza [Markdown](https://daringfireball.net/projects/markdown/) i està penjada a [GitHub](https://github.com/jantonz/IntroductionR). Un cop completat el curs podreu proposar canvis a la web i podran ser implementats a la següent edició. En llenguatge GitHub, els vostres _commits_ podran ser _pushed_ a la _branch_ principal... ja hi arribarem!
 
-## 1. Primers passos en R
+## 1. Introducció a R
+### 1.1. Primers passos en R (fora d'R)
+
+Els primers passos els farem en [aquesta web](http://tryr.codeschool.com/). Es tracta d'una molt bona manera de fer els primers passos en diversos llenguatges de programació, per si després us animeu a aprendre Python, per exemple.
+
+### 1.2. Instal·lació d'R i RStudio
+
+Ara que hem jugat una mica i hem après els conceptes bàsics del llenguatge, els aplicarem dins l'espai de treball adequat. Per fero, primer ens descarregarem:
+- [R](https://www.r-project.org/) i
+- [RStudio](https://www.rstudio.com/)
+
+La seva instal·lació és molt fàcil, i millor que es faci per ordre. La feina la farem en RStudio.
+
+### 1.3. Primers passos en R (dins d'R)
+
+És bon moment per provar algunes de les **funcions** que hem après. [Aquí](https://www.rstudio.com/wp-content/uploads/2016/05/base-r.pdf) teniu una _chuleta_ (_cheat sheet_ en anglès) amb moltes funcions per provar.
+
+## 2. Lectura i anàlisi dades
+
+### 2.1. Funcions bàsiques
+
+Dins d'R hi ha diverses petites bases de dades per jugar una mica. Una de molt típica es diu _mtcars_. Podeu provar d'aplicar-hi algunes funcions.
+
+`str`
+`head`
+`tail`
+`summary`
+`dim`
+`View`
+`class`
+
+### 2.2. Data _wrangling_
+
+El paquet _dplyr_ és molt útil per manipular dades i es pot descarregar via `install.packages("dplyr")`. Recordeu de cridar-lo (`library(dplyr)`) abans d'utilitzar-lo.
+
+Un _cheat sheet_ d'aquest paquet es troba [aquí](https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf).
 
 
+
+## 3. Representació gràfica
 
 
 ### Markdown
@@ -30,13 +67,3 @@ Syntax highlighted code block
 
 [Link](url) and ![Image](src)
 ```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/jantonz/IntroductionR/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
