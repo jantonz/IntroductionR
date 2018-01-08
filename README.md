@@ -67,4 +67,4 @@ Check this out:
 
 
 
-_. Josep Anton Mir Tutusaus . 2018 ._
+_Josep Anton Mir Tutusaus. 2018 ._
