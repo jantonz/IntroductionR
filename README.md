@@ -66,5 +66,4 @@ Check this out:
 
 
 
-<div class="align-right">_Josep Anton Mir Tutusaus. 2018 ._
-</div>
+_Josep Anton Mir Tutusaus. 2018 ._
