@@ -60,3 +60,11 @@ Check this out:
 - [R Notebook](http://rmarkdown.rstudio.com/r_notebooks.html)
 - [DataCamp](https://www.datacamp.com/)
 - [Coursera](https://www.coursera.org/specializations/jhu-data-science)
+
+
+
+
+
+
+
+_. Josep Anton Mir Tutusaus . 2018 ._
