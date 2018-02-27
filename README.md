@@ -61,7 +61,7 @@ Check this out:
 - [DataCamp](https://www.datacamp.com/)
 - [Coursera](https://www.coursera.org/specializations/jhu-data-science)
 
-
+# [Aquí podeu trobar l'exercici solucionat](https://nbviewer.jupyter.org/github/jantonz/IntroductionR/blob/master/Exercici%20dplyr%20i%20ggplot2.ipynb).
 
 
 
