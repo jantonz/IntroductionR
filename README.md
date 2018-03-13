@@ -268,8 +268,8 @@ head(retard.per.hora, 20)
 
 
 <table>
-<thead><tr><th scope=col>time</th><th scope=col>retard</th><th scope=col>n</th></tr></thead>
 <tbody>
+  <tr><td>time      </td><td>    retard</td><td>  n       </td></tr>
 	<tr><td>1.100000  </td><td>       NaN</td><td>  1       </td></tr>
 	<tr><td>5.000000  </td><td> -6.476471</td><td>341       </td></tr>
 	<tr><td>5.016667  </td><td>-12.000000</td><td>  1       </td></tr>
