@@ -128,7 +128,6 @@ head(vols, 10)
 
 
 <table>
-<thead><tr><th scope=col>year</th><th scope=col>month</th><th scope=col>day</th><th scope=col>dep_time</th><th scope=col>sched_dep_time</th><th scope=col>dep_delay</th><th scope=col>arr_time</th><th scope=col>sched_arr_time</th><th scope=col>arr_delay</th><th scope=col>carrier</th><th scope=col>flight</th><th scope=col>tailnum</th><th scope=col>origin</th><th scope=col>dest</th><th scope=col>air_time</th><th scope=col>distance</th><th scope=col>hour</th><th scope=col>minute</th><th scope=col>time_hour</th></tr></thead>
 <tbody>
 	<tr><td>2013               </td><td>1                  </td><td>1                  </td><td>517                </td><td>515                </td><td> 2                 </td><td> 830               </td><td> 819               </td><td> 11                </td><td>UA                 </td><td>1545               </td><td>N14228             </td><td>EWR                </td><td>IAH                </td><td>227                </td><td>1400               </td><td>5                  </td><td>15                 </td><td>2013-01-01 05:00:00</td></tr>
 	<tr><td>2013               </td><td>1                  </td><td>1                  </td><td>533                </td><td>529                </td><td> 4                 </td><td> 850               </td><td> 830               </td><td> 20                </td><td>UA                 </td><td>1714               </td><td>N24211             </td><td>LGA                </td><td>IAH                </td><td>227                </td><td>1416               </td><td>5                  </td><td>29                 </td><td>2013-01-01 05:00:00</td></tr>
@@ -237,7 +236,6 @@ head(vols, 5)
 
 
 <table>
- scope=col>origin</th><th scope=col>dest</th><th scope=col>air_time</th><th scope=col>distance</th><th scope=col>hour</th><th scope=col>minute</th><th scope=col>time_hour</th><th scope=col>time</th></tr></thead>
 <tbody>
 
 	<tr><td>year               </td><td>month              </td><td>day                  </td><td>dep_time          </td><td>sched_dep_time     </td><td> dep_delay                 </td><td> arr_time         </td><td> sched_arr_time    </td><td> arr_delay                </td><td>carrier           </td><td>flight             </td><td>tailnum             </td><td>origin            </td><td>dest               </td><td>air_time                </td><td>distance          </td><td>hour               </td><td>minute                 </td><td>time_hour         </td><td>time               </td></tr>
@@ -339,9 +337,7 @@ head(retard.per.dest, 20)
 
 
 <table>
-<thead><tr><th scope=col>dest</th><th scope=col>retard</th><th scope=col>n</th></tr></thead>
 <tbody>
-
 	<tr><td>dest     </td><td> retard  </td><td>  n      </td></tr>
 	<tr><td>ABQ      </td><td> 4.381890</td><td>  254    </td></tr>
 	<tr><td>ACK      </td><td> 4.852273</td><td>  265    </td></tr>
