@@ -63,6 +63,7 @@ Check this out:
 
 #### [Aquí podeu trobar l'exercici solucionat](https://nbviewer.jupyter.org/github/jantonz/IntroductionR/blob/master/exercici_dplyr_i_ggplot2.ipynb).
 
+#### [Aquí podeu trobar l'exercici solucionat 2](exercici_dplyr_i_ggplot2.md)
 
 
 
