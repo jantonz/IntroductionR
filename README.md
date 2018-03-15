@@ -43,7 +43,7 @@ El paquet _dplyr_ és molt útil per manipular dades i es pot descarregar via `i
 
 Un _cheat sheet_ d'aquest paquet es troba [aquí](https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf).
 
-Passarem una bona estona treballant els apartats 1, 2a-c i 3a-c d'[aquest exercici](http://bit.ly/2Cjm0y8). Es tracta d’un exercici que ens fa treballar amb dades sobre els vols que van volar des dels aeroports JFK, LGA i EWR de Nova York l’any 2013.
+Passarem una bona estona treballant els apartats 1, 2a-c i 3a-c d'[aquest exercici](https://goo.gl/LSJtZL). Es tracta d’un exercici que ens fa treballar amb dades sobre els vols que van volar des dels aeroports JFK, LGA i EWR de Nova York l’any 2013.
 
 # 3. Representació gràfica
 
