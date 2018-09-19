@@ -36,8 +36,8 @@ Now write ```"Arr!"```. Don't forget the quotes:
 
 That was not a number. That was not *numeric*. That was a *character*, a *string*.
 
-Everything between quotes is considered a string. Try to write ```"6"```; this is also a string! 
-```{r six, exercise=TRUE}
+Everything between quotes is considered a string. Try to write ```"2+2+"```; this is also a string! 
+```{r string-sum, exercise=TRUE}
 
 ```
 
@@ -45,6 +45,18 @@ Double quotes, single quotes, all are the same (just do not mix them). Write now
 ```{r arr-single, exercise=TRUE}
 
 ```
+
+Let's move now to *boolean* values. Write ```TRUE```, ALL IN CAPS, no quotes.
+```{r true, exercise=TRUE}
+
+```
+
+Write now ```FALSE```, ALL IN CAPS, no quotes.
+```{r arr-single, exercise=TRUE}
+
+```
+
+Note that the programming language R did not add quotes to those words. ```TRUE``` and ```FALSE``` are *reserved* words.
 
 ## Topic 2: Vectors
 
