@@ -4,6 +4,28 @@ Des d'aquí podreu seguir el curs sencer. És un bon lloc per començar a aprend
 
 Aquesta web utilitza [Markdown](https://daringfireball.net/projects/markdown/) i està penjada a [GitHub](https://github.com/jantonz/IntroductionR). Un cop completat el curs podreu proposar canvis a la web i podran ser implementats a la següent edició. En llenguatge GitHub, els vostres _commits_ podran ser _pushed_ a la _branch_ principal... ja hi arribarem!
 
+## 0. Descàrregues
+### 0.1. Programari
+
+- **R:** [link](https://www.r-project.org/) i
+- **RStudio:** [link](https://www.rstudio.com/)
+
+### 0.2. Dades
+
+- **iris:** [link](https://github.com/jantonz/IntroductionR/blob/master/iris.csv?raw=true).
+- **mtcars:** [link](https://github.com/jantonz/IntroductionR/blob/master/mtcars.txt?raw=true).
+
+### 0.3. Cheat Sheets
+
+- **R Base:** [link](https://github.com/jantonz/IntroductionR/blob/master/base-r.pdf?raw=true)
+- **dplyr:** [link](https://github.com/jantonz/IntroductionR/blob/master/data-wrangling-cheatsheet.pdf?raw=true)
+- **ggplot2:** [link](https://github.com/jantonz/IntroductionR/blob/master/ggplot2-cheatsheet.pdf?raw=true)
+
+### 0.4. Exercicis
+
+- **Exercici Vols New York 2013:** [link](https://github.com/jantonz/IntroductionR/blob/master/Exercici%20dplyr.pdf?raw=true)
+
+
 # 1. Introducció a R
 ### 1.1. Primers passos en R (fora d'R)
 
