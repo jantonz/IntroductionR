@@ -4,10 +4,10 @@ Des d'aquí podreu seguir el curs sencer. És un bon lloc per començar a aprend
 
 Aquesta web utilitza [Markdown](https://daringfireball.net/projects/markdown/) i està penjada a [GitHub](https://github.com/jantonz/IntroductionR). Un cop completat el curs podreu proposar canvis a la web i podran ser implementats a la següent edició. En llenguatge GitHub, els vostres _commits_ podran ser _pushed_ a la _branch_ principal... ja hi arribarem!
 
-## 0. Descàrregues
+# 0. Descàrregues
 ### 0.1. Programari
 
-- **R:** [link](https://www.r-project.org/) i
+- **R:** [link](https://www.r-project.org/)
 - **RStudio:** [link](https://www.rstudio.com/)
 
 ### 0.2. Dades
