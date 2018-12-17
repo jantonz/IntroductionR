@@ -57,13 +57,13 @@ Utilitzarem les funcions ```read.csv``` i ```read.table```, respectivament.
 Ara podem provar d'aplicar sobre les *data.frames* algunes funcions:
 
 ```
-str()
+class()
+dim()
 head()
 tail()
-summary()
-dim()
 View()
-class()
+summary()
+str()
 ```
 
 ### 2.2. Data _wrangling_
