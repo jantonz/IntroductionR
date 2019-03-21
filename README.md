@@ -23,7 +23,7 @@ Aquesta web utilitza [Markdown](https://daringfireball.net/projects/markdown/) i
 
 ### 0.4. Exercicis
 
-- **Exercici Vols New York 2013:** [link](https://github.com/jantonz/IntroductionR/blob/master/Exercici%20dplyr.pdf?raw=true)
+- **Exercici Vols New York 2013:** [link](https://github.com/jantonz/IntroductionR/blob/master/exercices/Exercici%20dplyr.pdf?raw=true)
 
 
 # 1. Introducció a R
@@ -72,7 +72,7 @@ El paquet _dplyr_ és molt útil per manipular dades i es pot descarregar via `i
 
 Un _cheat sheet_ d'aquest paquet es troba [aquí](https://github.com/jantonz/IntroductionR/blob/master/cheatsheets/data-wrangling-cheatsheet.pdf?raw=true).
 
-Passarem una bona estona treballant els apartats 1, 2a-c i 3a-c d'[aquest exercici](https://github.com/jantonz/IntroductionR/blob/master/Exercici%20dplyr.pdf?raw=true). Es tracta d’un exercici que ens fa treballar amb dades sobre els vols que van volar des dels aeroports JFK, LGA i EWR de Nova York l’any 2013.
+Passarem una bona estona treballant els apartats 1, 2a-c i 3a-c d'[aquest exercici](https://github.com/jantonz/IntroductionR/blob/master/exercices/Exercici%20dplyr.pdf?raw=true). Es tracta d’un exercici que ens fa treballar amb dades sobre els vols que van volar des dels aeroports JFK, LGA i EWR de Nova York l’any 2013.
 
 # 3. Representació gràfica
 
