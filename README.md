@@ -14,6 +14,8 @@ Aquesta web utilitza [Markdown](https://daringfireball.net/projects/markdown/) i
 
 - **iris:** [link](https://github.com/jantonz/IntroductionR/blob/master/data/iris.csv?raw=true).
 - **mtcars:** [link](https://github.com/jantonz/IntroductionR/blob/master/data/mtcars.txt?raw=true).
+- **airports:** [link](https://raw.githubusercontent.com/jantonz/IntroductionR/master/data/airports.csv).
+- **flights:** [link](https://raw.githubusercontent.com/jantonz/IntroductionR/master/data/flights.csv).
 
 ### 0.3. Cheat Sheets
 
