@@ -21,7 +21,7 @@ Aquesta web utilitza [Markdown](https://daringfireball.net/projects/markdown/) i
 
 - **R Base:** [link](https://github.com/jantonz/IntroductionR/blob/master/cheatsheets/base-r.pdf?raw=true)
 - **dplyr:** [link](https://github.com/jantonz/IntroductionR/blob/master/cheatsheets/data-transformation.pdf?raw=true)
-- **ggplot2:** [link](https://github.com/jantonz/IntroductionR/blob/master/cheatsheets/ggplot2-cheatsheet.pdf?raw=true)
+- **ggplot2:** [link](https://github.com/jantonz/IntroductionR/blob/master/cheatsheets/data-visualization-2.1.pdf?raw=true)
 
 ### 0.4. Exercicis
 
@@ -78,7 +78,7 @@ Passarem una bona estona treballant els apartats 1, 2a-c i 3a-c d'[aquest exerci
 
 # 3. Representació gràfica
 
-Per a visualitzar dades amb R, el paquet més utilitzat és _ggplot2_. El seu _cheat sheet_ es troba [aquí](https://github.com/jantonz/IntroductionR/blob/master/cheatsheets/ggplot2-cheatsheet.pdf?raw=true) i l'utilitzarem per acabar l'exercici anterior.
+Per a visualitzar dades amb R, el paquet més utilitzat és _ggplot2_. El seu _cheat sheet_ es troba [aquí](https://github.com/jantonz/IntroductionR/blob/master/cheatsheets/data-visualization-2.1.pdf?raw=true) i l'utilitzarem per acabar l'exercici anterior.
 
 Es poden fer moltes correlacions, però recordeu que correlació no implica causalitat: [Spurious correlations](http://www.tylervigen.com/spurious-correlations). Aquí hi podeu trobar algunes informacions molt interessants, com que el consum de formatge per càpita es correlaciona en un 95% amb el nombre de persones mortes per per ofegament en els llençols. Alerta!
 
