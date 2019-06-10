@@ -20,7 +20,7 @@ Aquesta web utilitza [Markdown](https://daringfireball.net/projects/markdown/) i
 ### 0.3. Cheat Sheets
 
 - **R Base:** [link](https://github.com/jantonz/IntroductionR/blob/master/cheatsheets/base-r.pdf?raw=true)
-- **dplyr:** [link](https://github.com/jantonz/IntroductionR/blob/master/cheatsheets/data-wrangling-cheatsheet.pdf?raw=true)
+- **dplyr:** [link](https://github.com/jantonz/IntroductionR/blob/master/cheatsheets/data-transformation.pdf?raw=true)
 - **ggplot2:** [link](https://github.com/jantonz/IntroductionR/blob/master/cheatsheets/ggplot2-cheatsheet.pdf?raw=true)
 
 ### 0.4. Exercicis
@@ -72,7 +72,7 @@ str()
 
 El paquet _dplyr_ és molt útil per manipular dades i es pot descarregar via `install.packages("dplyr")`. Recordeu de cridar-lo (`library(dplyr)`) abans d'utilitzar-lo.
 
-Un _cheat sheet_ d'aquest paquet es troba [aquí](https://github.com/jantonz/IntroductionR/blob/master/cheatsheets/data-wrangling-cheatsheet.pdf?raw=true).
+Un _cheat sheet_ d'aquest paquet es troba [aquí](https://github.com/jantonz/IntroductionR/blob/master/cheatsheets/data-transformation.pdf?raw=true).
 
 Passarem una bona estona treballant els apartats 1, 2a-c i 3a-c d'[aquest exercici](https://github.com/jantonz/IntroductionR/blob/master/exercices/Exercici%20dplyr.pdf?raw=true). Es tracta d’un exercici que ens fa treballar amb dades sobre els vols que van volar des dels aeroports JFK, LGA i EWR de Nova York l’any 2013.
 
