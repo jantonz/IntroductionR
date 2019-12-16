@@ -43,7 +43,7 @@ La seva instal·lació és molt fàcil, i millor que es faci per ordre. La feina
 
 ### 1.3. Primers passos en R (dins d'R)
 
-És bon moment per provar algunes de les **funcions** que hem après. [Aquí](https://github.com/jantonz/IntroductionR/blob/cheatsheets/master/base-r.pdf?raw=true) teniu una _chuleta_ (_cheat sheet_ en anglès) amb moltes funcions per provar.
+És bon moment per provar algunes de les **funcions** que hem après. [Aquí](https://github.com/jantonz/IntroductionR/blob/master/cheatsheets/base-r.pdf?raw=true) teniu una _chuleta_ (_cheat sheet_ en anglès) amb moltes funcions per provar.
 
 # 2. Lectura i anàlisi dades
 
