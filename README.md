@@ -95,7 +95,7 @@ Check this out:
 <br><br>
 
 
-_Josep Anton Mir Tutusaus. 2018 ._
+_Josep Anton Mir Tutusaus. 2020 ._
 
 <br><br>
 <br><br>
@@ -104,72 +104,97 @@ _Josep Anton Mir Tutusaus. 2018 ._
 
 #### [Aquí podeu trobar l'exercici solucionat](exercici_dplyr_i_ggplot2)
 
-
 # Exercici dplyr i ggplot2
 
-## 1. Inici
-### a) Instal·la el paquet _nycflights13_
-### b) Carrega el paquet _nycflights13_
+## 1. Inici 
+
+En el context de l'exercici necessitarem els paquets ```dplyr```, ```ggplot2```, ```maps``` i ```leaflet```. Si no els tenim instal·lats, caldrà instal·lar-los.
+
+Una manera elegant de carregar paquets i, en cas que no estiguin instal·lats, instal·lar-los, és utilitzar la següent funció:
 
 
 ```R
-install.packages("nycflights13")
+load_or_install <- function(x){
+  for( i in x ){
+    #  require returns TRUE invisibly if it was able to load package
+    if( ! require( i , character.only = TRUE ) ){
+      #  If package was not able to be loaded then re-install
+      install.packages( i , dependencies = TRUE )
+      #  Load package after installing
+      require( i , character.only = TRUE )
+    }
+  }
+}
 
-```
-
-    Updating HTML index of packages in '.Library'
-    Making 'packages.html' ... done
-
-
-
-```R
-library(nycflights13)
-```
-
-En el context de l'exercici, també necessitarem els paquets dplyr, ggplot2 i maps:
-
-
-```R
-install.packages(c("dplyr", "ggplot2", "maps"))
-```
-
-    Updating HTML index of packages in '.Library'
-    Making 'packages.html' ... done
-
-
-
-```R
-library(dplyr)
-library(ggplot2)
-library(maps)
-```
-
-Carrega la base de dades adequada (la que conté les variables d’interès), assigna-la a _vols_ i investiga-la una mica amb str(), head(), summary().
-L'assignem a una variable diferent (_vols_) a l'original perquè així podem modificar-la sense malmetre les dades oringals, allò que en anglès es diu _raw data_.
-
-
-```R
-vols <- flights
 ```
 
 
 ```R
-head(vols, 10)
+load_or_install(c("dplyr", "ggplot2", "maps", "leaflet"))
+```
+
+    Loading required package: dplyr
+    
+    Attaching package: ‘dplyr’
+    
+    The following objects are masked from ‘package:stats’:
+    
+        filter, lag
+    
+    The following objects are masked from ‘package:base’:
+    
+        intersect, setdiff, setequal, union
+    
+    Loading required package: ggplot2
+    Loading required package: maps
+    Loading required package: leaflet
+
+
+Ara ja tenim instal·lats i carregats tots els paquets necessaris per dur a terme l'exercici.
+
+Cal ara llegir els fitxers de dades que necessitem. Resulta que els dos fitxers que necessitem es troben dins la carpeta "data". Això ho podem comprovar utilitzant la funció `list.files()`:
+
+
+```R
+list.files("data")
+```
+
+
+<ol class=list-inline>
+	<li>'airports.csv'</li>
+	<li>'flights.csv'</li>
+	<li>'iris.csv'</li>
+	<li>'mtcars.txt'</li>
+</ol>
+
+
+
+Efectivament, hem trobat els fitxers "airports.csv" i "flights.csv", que són els fitxers de dades que necessitem. Llegim les dades!
+
+
+```R
+aero <- read.table("data/airports.csv", header = TRUE, sep = ",")
+vols <- read.csv("data/flights.csv")
+```
+
+Ara que hem llegit els fitxers a les variables _aero_ i _vols_, podem explorar-les una mica amb str(), head(), summary().
+
+Les dades del fitxer d'origen no les modificarem en cap cas.
+
+
+```R
+head(vols, 5)
 ```
 
 
 <table>
+<thead><tr><th scope=col>X</th><th scope=col>year</th><th scope=col>month</th><th scope=col>day</th><th scope=col>dep_time</th><th scope=col>sched_dep_time</th><th scope=col>dep_delay</th><th scope=col>arr_time</th><th scope=col>sched_arr_time</th><th scope=col>arr_delay</th><th scope=col>carrier</th><th scope=col>flight</th><th scope=col>tailnum</th><th scope=col>origin</th><th scope=col>dest</th><th scope=col>air_time</th><th scope=col>distance</th><th scope=col>hour</th><th scope=col>minute</th><th scope=col>time_hour</th></tr></thead>
 <tbody>
-	<tr><td>2013               </td><td>1                  </td><td>1                  </td><td>517                </td><td>515                </td><td> 2                 </td><td> 830               </td><td> 819               </td><td> 11                </td><td>UA                 </td><td>1545               </td><td>N14228             </td><td>EWR                </td><td>IAH                </td><td>227                </td><td>1400               </td><td>5                  </td><td>15                 </td><td>2013-01-01 05:00:00</td></tr>
-	<tr><td>2013               </td><td>1                  </td><td>1                  </td><td>533                </td><td>529                </td><td> 4                 </td><td> 850               </td><td> 830               </td><td> 20                </td><td>UA                 </td><td>1714               </td><td>N24211             </td><td>LGA                </td><td>IAH                </td><td>227                </td><td>1416               </td><td>5                  </td><td>29                 </td><td>2013-01-01 05:00:00</td></tr>
-	<tr><td>2013               </td><td>1                  </td><td>1                  </td><td>542                </td><td>540                </td><td> 2                 </td><td> 923               </td><td> 850               </td><td> 33                </td><td>AA                 </td><td>1141               </td><td>N619AA             </td><td>JFK                </td><td>MIA                </td><td>160                </td><td>1089               </td><td>5                  </td><td>40                 </td><td>2013-01-01 05:00:00</td></tr>
-	<tr><td>2013               </td><td>1                  </td><td>1                  </td><td>544                </td><td>545                </td><td>-1                 </td><td>1004               </td><td>1022               </td><td>-18                </td><td>B6                 </td><td> 725               </td><td>N804JB             </td><td>JFK                </td><td>BQN                </td><td>183                </td><td>1576               </td><td>5                  </td><td>45                 </td><td>2013-01-01 05:00:00</td></tr>
-	<tr><td>2013               </td><td>1                  </td><td>1                  </td><td>554                </td><td>600                </td><td>-6                 </td><td> 812               </td><td> 837               </td><td>-25                </td><td>DL                 </td><td> 461               </td><td>N668DN             </td><td>LGA                </td><td>ATL                </td><td>116                </td><td> 762               </td><td>6                  </td><td> 0                 </td><td>2013-01-01 06:00:00</td></tr>
-	<tr><td>2013               </td><td>1                  </td><td>1                  </td><td>554                </td><td>558                </td><td>-4                 </td><td> 740               </td><td> 728               </td><td> 12                </td><td>UA                 </td><td>1696               </td><td>N39463             </td><td>EWR                </td><td>ORD                </td><td>150                </td><td> 719               </td><td>5                  </td><td>58                 </td><td>2013-01-01 05:00:00</td></tr>
-	<tr><td>2013               </td><td>1                  </td><td>1                  </td><td>555                </td><td>600                </td><td>-5                 </td><td> 913               </td><td> 854               </td><td> 19                </td><td>B6                 </td><td> 507               </td><td>N516JB             </td><td>EWR                </td><td>FLL                </td><td>158                </td><td>1065               </td><td>6                  </td><td> 0                 </td><td>2013-01-01 06:00:00</td></tr>
-	<tr><td>2013               </td><td>1                  </td><td>1                  </td><td>557                </td><td>600                </td><td>-3                 </td><td> 709               </td><td> 723               </td><td>-14                </td><td>EV                 </td><td>5708               </td><td>N829AS             </td><td>LGA                </td><td>IAD                </td><td> 53                </td><td> 229               </td><td>6                  </td><td> 0                 </td><td>2013-01-01 06:00:00</td></tr>
-	<tr><td>2013               </td><td>1                  </td><td>1                  </td><td>557                </td><td>600                </td><td>-3                 </td><td> 838               </td><td> 846               </td><td> -8                </td><td>B6                 </td><td>  79               </td><td>N593JB             </td><td>JFK                </td><td>MCO                </td><td>140                </td><td> 944               </td><td>6                  </td><td> 0                 </td><td>2013-01-01 06:00:00</td></tr>
-	<tr><td>2013               </td><td>1                  </td><td>1                  </td><td>558                </td><td>600                </td><td>-2                 </td><td> 753               </td><td> 745               </td><td>  8                </td><td>AA                 </td><td> 301               </td><td>N3ALAA             </td><td>LGA                </td><td>ORD                </td><td>138                </td><td> 733               </td><td>6                  </td><td> 0                 </td><td>2013-01-01 06:00:00</td></tr>
+	<tr><td>1                  </td><td>2013               </td><td>1                  </td><td>1                  </td><td>517                </td><td>515                </td><td> 2                 </td><td> 830               </td><td> 819               </td><td> 11                </td><td>UA                 </td><td>1545               </td><td>N14228             </td><td>EWR                </td><td>IAH                </td><td>227                </td><td>1400               </td><td>5                  </td><td>15                 </td><td>2013-01-01 05:00:00</td></tr>
+	<tr><td>2                  </td><td>2013               </td><td>1                  </td><td>1                  </td><td>533                </td><td>529                </td><td> 4                 </td><td> 850               </td><td> 830               </td><td> 20                </td><td>UA                 </td><td>1714               </td><td>N24211             </td><td>LGA                </td><td>IAH                </td><td>227                </td><td>1416               </td><td>5                  </td><td>29                 </td><td>2013-01-01 05:00:00</td></tr>
+	<tr><td>3                  </td><td>2013               </td><td>1                  </td><td>1                  </td><td>542                </td><td>540                </td><td> 2                 </td><td> 923               </td><td> 850               </td><td> 33                </td><td>AA                 </td><td>1141               </td><td>N619AA             </td><td>JFK                </td><td>MIA                </td><td>160                </td><td>1089               </td><td>5                  </td><td>40                 </td><td>2013-01-01 05:00:00</td></tr>
+	<tr><td>4                  </td><td>2013               </td><td>1                  </td><td>1                  </td><td>544                </td><td>545                </td><td>-1                 </td><td>1004               </td><td>1022               </td><td>-18                </td><td>B6                 </td><td> 725               </td><td>N804JB             </td><td>JFK                </td><td>BQN                </td><td>183                </td><td>1576               </td><td>5                  </td><td>45                 </td><td>2013-01-01 05:00:00</td></tr>
+	<tr><td>5                  </td><td>2013               </td><td>1                  </td><td>1                  </td><td>554                </td><td>600                </td><td>-6                 </td><td> 812               </td><td> 837               </td><td>-25                </td><td>DL                 </td><td> 461               </td><td>N668DN             </td><td>LGA                </td><td>ATL                </td><td>116                </td><td> 762               </td><td>6                  </td><td> 0                 </td><td>2013-01-01 06:00:00</td></tr>
 </tbody>
 </table>
 
@@ -180,26 +205,27 @@ head(vols, 10)
 str(vols)
 ```
 
-    Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	336776 obs. of  19 variables:
+    'data.frame':	200000 obs. of  20 variables:
+     $ X             : int  1 2 3 4 5 6 7 8 9 10 ...
      $ year          : int  2013 2013 2013 2013 2013 2013 2013 2013 2013 2013 ...
      $ month         : int  1 1 1 1 1 1 1 1 1 1 ...
      $ day           : int  1 1 1 1 1 1 1 1 1 1 ...
      $ dep_time      : int  517 533 542 544 554 554 555 557 557 558 ...
      $ sched_dep_time: int  515 529 540 545 600 558 600 600 600 600 ...
-     $ dep_delay     : num  2 4 2 -1 -6 -4 -5 -3 -3 -2 ...
+     $ dep_delay     : int  2 4 2 -1 -6 -4 -5 -3 -3 -2 ...
      $ arr_time      : int  830 850 923 1004 812 740 913 709 838 753 ...
      $ sched_arr_time: int  819 830 850 1022 837 728 854 723 846 745 ...
-     $ arr_delay     : num  11 20 33 -18 -25 12 19 -14 -8 8 ...
-     $ carrier       : chr  "UA" "UA" "AA" "B6" ...
+     $ arr_delay     : int  11 20 33 -18 -25 12 19 -14 -8 8 ...
+     $ carrier       : Factor w/ 16 levels "9E","AA","AS",..: 12 12 2 4 5 12 4 6 4 2 ...
      $ flight        : int  1545 1714 1141 725 461 1696 507 5708 79 301 ...
-     $ tailnum       : chr  "N14228" "N24211" "N619AA" "N804JB" ...
-     $ origin        : chr  "EWR" "LGA" "JFK" "JFK" ...
-     $ dest          : chr  "IAH" "IAH" "MIA" "BQN" ...
-     $ air_time      : num  227 227 160 183 116 150 158 53 140 138 ...
-     $ distance      : num  1400 1416 1089 1576 762 ...
-     $ hour          : num  5 5 5 5 6 5 6 6 6 6 ...
-     $ minute        : num  15 29 40 45 0 58 0 0 0 0 ...
-     $ time_hour     : POSIXct, format: "2013-01-01 05:00:00" "2013-01-01 05:00:00" ...
+     $ tailnum       : Factor w/ 3935 levels "D942DN","N0EGMQ",..: 178 518 2369 3138 2621 1129 1813 3221 2181 1164 ...
+     $ origin        : Factor w/ 3 levels "EWR","JFK","LGA": 1 3 2 2 3 1 1 3 2 3 ...
+     $ dest          : Factor w/ 102 levels "ABQ","ACK","ALB",..: 43 43 57 12 4 68 35 42 53 68 ...
+     $ air_time      : int  227 227 160 183 116 150 158 53 140 138 ...
+     $ distance      : int  1400 1416 1089 1576 762 719 1065 229 944 733 ...
+     $ hour          : int  5 5 5 5 6 5 6 6 6 6 ...
+     $ minute        : int  15 29 40 45 0 58 0 0 0 0 ...
+     $ time_hour     : Factor w/ 4167 levels "2013-01-01 05:00:00",..: 1 1 1 1 2 1 2 2 2 2 ...
 
 
 
@@ -208,50 +234,76 @@ summary(vols)
 ```
 
 
-          year          month             day           dep_time    sched_dep_time
-     Min.   :2013   Min.   : 1.000   Min.   : 1.00   Min.   :   1   Min.   : 106  
-     1st Qu.:2013   1st Qu.: 4.000   1st Qu.: 8.00   1st Qu.: 907   1st Qu.: 906  
-     Median :2013   Median : 7.000   Median :16.00   Median :1401   Median :1359  
-     Mean   :2013   Mean   : 6.549   Mean   :15.71   Mean   :1349   Mean   :1344  
-     3rd Qu.:2013   3rd Qu.:10.000   3rd Qu.:23.00   3rd Qu.:1744   3rd Qu.:1729  
-     Max.   :2013   Max.   :12.000   Max.   :31.00   Max.   :2400   Max.   :2359  
-                                                     NA's   :8255                 
-       dep_delay          arr_time    sched_arr_time   arr_delay       
-     Min.   : -43.00   Min.   :   1   Min.   :   1   Min.   : -86.000  
-     1st Qu.:  -5.00   1st Qu.:1104   1st Qu.:1124   1st Qu.: -17.000  
-     Median :  -2.00   Median :1535   Median :1556   Median :  -5.000  
-     Mean   :  12.64   Mean   :1502   Mean   :1536   Mean   :   6.895  
-     3rd Qu.:  11.00   3rd Qu.:1940   3rd Qu.:1945   3rd Qu.:  14.000  
-     Max.   :1301.00   Max.   :2400   Max.   :2359   Max.   :1272.000  
-     NA's   :8255      NA's   :8713                  NA's   :9430      
-       carrier              flight       tailnum             origin         
-     Length:336776      Min.   :   1   Length:336776      Length:336776     
-     Class :character   1st Qu.: 553   Class :character   Class :character  
-     Mode  :character   Median :1496   Mode  :character   Mode  :character  
-                        Mean   :1972                                        
-                        3rd Qu.:3465                                        
-                        Max.   :8500                                        
+           X               year          month             day       
+     Min.   :     1   Min.   :2013   Min.   : 1.000   Min.   : 1.00  
+     1st Qu.: 50001   1st Qu.:2013   1st Qu.: 2.000   1st Qu.: 7.00  
+     Median :100000   Median :2013   Median : 4.000   Median :15.00  
+     Mean   :100000   Mean   :2013   Mean   : 6.181   Mean   :15.23  
+     3rd Qu.:150000   3rd Qu.:2013   3rd Qu.:11.000   3rd Qu.:23.00  
+     Max.   :200000   Max.   :2013   Max.   :12.000   Max.   :31.00  
+                                                                     
+        dep_time    sched_dep_time   dep_delay          arr_time    sched_arr_time
+     Min.   :   1   Min.   : 500   Min.   : -43.00   Min.   :   1   Min.   :   1  
+     1st Qu.: 909   1st Qu.: 905   1st Qu.:  -5.00   1st Qu.:1114   1st Qu.:1129  
+     Median :1404   Median :1359   Median :  -2.00   Median :1546   Median :1603  
+     Mean   :1350   Mean   :1344   Mean   :  10.75   Mean   :1515   Mean   :1543  
+     3rd Qu.:1742   3rd Qu.:1729   3rd Qu.:   9.00   3rd Qu.:1944   3rd Qu.:1950  
+     Max.   :2400   Max.   :2359   Max.   :1301.00   Max.   :2400   Max.   :2359  
+     NA's   :4837                  NA's   :4837      NA's   :5025                 
+       arr_delay           carrier          flight        tailnum       origin     
+     Min.   : -86.000   UA     :34983   Min.   :   1   N725MQ :   322   EWR:72108  
+     1st Qu.: -16.000   B6     :32244   1st Qu.: 541   N713MQ :   275   JFK:65630  
+     Median :  -4.000   EV     :32077   Median :1485   N723MQ :   273   LGA:62262  
+     Mean   :   5.794   DL     :28391   Mean   :1972   N353JB :   269              
+     3rd Qu.:  13.000   AA     :19458   3rd Qu.:3494   N258JB :   258              
+     Max.   :1272.000   MQ     :15725   Max.   :8500   (Other):197115              
+     NA's   :5381       (Other):37122                  NA's   :  1488              
+          dest           air_time        distance         hour           minute    
+     ATL    : 10240   Min.   : 20.0   Min.   :  80   Min.   : 5.00   Min.   : 0.0  
+     ORD    :  9760   1st Qu.: 85.0   1st Qu.: 502   1st Qu.: 9.00   1st Qu.: 6.0  
+     LAX    :  9235   Median :133.0   Median : 872   Median :13.00   Median :29.0  
+     BOS    :  9115   Mean   :153.1   Mean   :1031   Mean   :13.19   Mean   :25.8  
+     MCO    :  8513   3rd Qu.:194.0   3rd Qu.:1389   3rd Qu.:17.00   3rd Qu.:43.0  
+     CLT    :  8272   Max.   :695.0   Max.   :4983   Max.   :23.00   Max.   :59.0  
+     (Other):144865   NA's   :5381                                                 
+                   time_hour     
+     2013-10-11 08:00:00:    92  
+     2013-10-01 08:00:00:    91  
+     2013-10-09 08:00:00:    91  
+     2013-10-16 08:00:00:    91  
+     2013-10-23 08:00:00:    91  
+     2013-10-03 08:00:00:    90  
+     (Other)            :199454  
 
-         dest              air_time        distance         hour      
-     Length:336776      Min.   : 20.0   Min.   :  17   Min.   : 1.00  
-     Class :character   1st Qu.: 82.0   1st Qu.: 502   1st Qu.: 9.00  
-     Mode  :character   Median :129.0   Median : 872   Median :13.00  
-                        Mean   :150.7   Mean   :1040   Mean   :13.18  
-                        3rd Qu.:192.0   3rd Qu.:1389   3rd Qu.:17.00  
-                        Max.   :695.0   Max.   :4983   Max.   :23.00  
-                        NA's   :9430                                  
-         minute        time_hour                  
-     Min.   : 0.00   Min.   :2013-01-01 05:00:00  
-     1st Qu.: 8.00   1st Qu.:2013-04-04 13:00:00  
-     Median :29.00   Median :2013-07-03 10:00:00  
-     Mean   :26.23   Mean   :2013-07-03 05:02:36  
-     3rd Qu.:44.00   3rd Qu.:2013-10-01 07:00:00  
-     Max.   :59.00   Max.   :2013-12-31 23:00:00  
 
-
+Podeu fer el mateix amb la _data.frame_ _aero_, que utilitzarem més endavant.
 
 ## 2. Retard vs. Temps
+
+Ens interessa en aquest apartat estudiar la relació (si n'hi ha) entre el retard dels vols i l'hora de sortida dels vols.
+
 ### a) Crea una nova variable _time_ dins la base de dades _vols_, que contingui l’hora i minut com un sol valor decimal (de l’estil 1.01, 1.10, 1.50 hores).
+
+Volem crear una nova columna unint informació de la columna _hour_, que conté l'hora de sortida del vol, i la columna _minute_, que conté el minut de sortida del vol. Aquí podeu veure un extracte d'algunes columnes del nostre dataset:
+
+
+```R
+head(vols[c("origin", "dest", "arr_delay", "hour", "minute")], 3)
+```
+
+
+<table>
+<thead><tr><th scope=col>origin</th><th scope=col>dest</th><th scope=col>arr_delay</th><th scope=col>hour</th><th scope=col>minute</th></tr></thead>
+<tbody>
+	<tr><td>EWR</td><td>IAH</td><td>11 </td><td>5  </td><td>15 </td></tr>
+	<tr><td>LGA</td><td>IAH</td><td>20 </td><td>5  </td><td>29 </td></tr>
+	<tr><td>JFK</td><td>MIA</td><td>33 </td><td>5  </td><td>40 </td></tr>
+</tbody>
+</table>
+
+
+
+Com es veu, tenim informació de l'origen, el destí, el retard i l'hora i minut de sortida del vol, però és estrany veure l'hora de sortida en dues columnes separdes. És per això que crearem la columna següent:
 
 
 ```R
@@ -262,30 +314,27 @@ Comprovem que la nostra nova columna s'ha afegit al final (a la dreta) de la nos
 
 
 ```R
-head(vols, 5)
+head(vols, 1)
 ```
 
 
 <table>
+<thead><tr><th scope=col>X</th><th scope=col>year</th><th scope=col>month</th><th scope=col>day</th><th scope=col>dep_time</th><th scope=col>sched_dep_time</th><th scope=col>dep_delay</th><th scope=col>arr_time</th><th scope=col>sched_arr_time</th><th scope=col>arr_delay</th><th scope=col>...</th><th scope=col>flight</th><th scope=col>tailnum</th><th scope=col>origin</th><th scope=col>dest</th><th scope=col>air_time</th><th scope=col>distance</th><th scope=col>hour</th><th scope=col>minute</th><th scope=col>time_hour</th><th scope=col>time</th></tr></thead>
 <tbody>
-
-	<tr><td>year               </td><td>month              </td><td>day                  </td><td>dep_time          </td><td>sched_dep_time     </td><td> dep_delay                 </td><td> arr_time         </td><td> sched_arr_time    </td><td> arr_delay                </td><td>carrier           </td><td>flight             </td><td>tailnum             </td><td>origin            </td><td>dest               </td><td>air_time                </td><td>distance          </td><td>hour               </td><td>minute                 </td><td>time_hour         </td><td>time               </td></tr>
-	<tr><td>2013               </td><td>1                  </td><td>1                  </td><td>517                </td><td>515                </td><td> 2                 </td><td> 830               </td><td> 819               </td><td> 11                </td><td>UA                 </td><td>1545               </td><td>N14228             </td><td>EWR                </td><td>IAH                </td><td>227                </td><td>1400               </td><td>5                  </td><td>15                 </td><td>2013-01-01 05:00:00</td><td>5.250000           </td></tr>
-	<tr><td>2013               </td><td>1                  </td><td>1                  </td><td>533                </td><td>529                </td><td> 4                 </td><td> 850               </td><td> 830               </td><td> 20                </td><td>UA                 </td><td>1714               </td><td>N24211             </td><td>LGA                </td><td>IAH                </td><td>227                </td><td>1416               </td><td>5                  </td><td>29                 </td><td>2013-01-01 05:00:00</td><td>5.483333           </td></tr>
-	<tr><td>2013               </td><td>1                  </td><td>1                  </td><td>542                </td><td>540                </td><td> 2                 </td><td> 923               </td><td> 850               </td><td> 33                </td><td>AA                 </td><td>1141               </td><td>N619AA             </td><td>JFK                </td><td>MIA                </td><td>160                </td><td>1089               </td><td>5                  </td><td>40                 </td><td>2013-01-01 05:00:00</td><td>5.666667           </td></tr>
-	<tr><td>2013               </td><td>1                  </td><td>1                  </td><td>544                </td><td>545                </td><td>-1                 </td><td>1004               </td><td>1022               </td><td>-18                </td><td>B6                 </td><td> 725               </td><td>N804JB             </td><td>JFK                </td><td>BQN                </td><td>183                </td><td>1576               </td><td>5                  </td><td>45                 </td><td>2013-01-01 05:00:00</td><td>5.750000           </td></tr>
-	<tr><td>2013               </td><td>1                  </td><td>1                  </td><td>554                </td><td>600                </td><td>-6                 </td><td> 812               </td><td> 837               </td><td>-25                </td><td>DL                 </td><td> 461               </td><td>N668DN             </td><td>LGA                </td><td>ATL                </td><td>116                </td><td> 762               </td><td>6                  </td><td> 0                 </td><td>2013-01-01 06:00:00</td><td>6.000000           </td></tr>
+	<tr><td>1                  </td><td>2013               </td><td>1                  </td><td>1                  </td><td>517                </td><td>515                </td><td>2                  </td><td>830                </td><td>819                </td><td>11                 </td><td>...                </td><td>1545               </td><td>N14228             </td><td>EWR                </td><td>IAH                </td><td>227                </td><td>1400               </td><td>5                  </td><td>15                 </td><td>2013-01-01 05:00:00</td><td>5.25               </td></tr>
 </tbody>
 </table>
 
 
 
-### b) Calcula el retard mitjà i el nombre de vols per hora per a cada valor de _time_ diferent. El resultat hauria de ser una dataframe anomenada _retard.per.hora_ de 3 columnes, _time_, _retard_ i _n_, amb tantes files com valors de _time_ diferents existeixin. Utilitzar el paquet _**dplyr**_ facilita les coses!
+Bé! Hem creat una nova columna, que es diu _time_, i conté l'hora de sortida del vol en format decimal. Potser també és un format estrany, però ens ha servit per aprendre a crear una columna nova combinació d'altres columnes existents, i també ens servirà per fer un bon anàlisi.
+
+### b) Calcula el retard mitjà i el nombre de vols per hora per a cada valor de *time* diferent. El resultat hauria de ser una dataframe anomenada *retard.per.hora* de 3 columnes, *time* , *retard* i *_n_* , amb tantes files com valors de *time* diferents existeixin. Utilitzar el paquet _dplyr_ facilita les coses!
 
 
 ```R
-retard.per.hora <- summarise(group_by(vols, time),
-                            retard = mean(arr_delay, na.rm=TRUE), n=n())
+retard.per.hora <- summarise(group_by(vols, time), 
+                             retard = mean(arr_delay, na.rm=TRUE), n=n())
 ```
 
 Fixeu-vos en com hem afegit l'argument _na.rm=TRUE_ a la funció _mean_, que serveix per ignorar els valors _NA_.
@@ -294,33 +343,19 @@ Fixeu-vos en com hem afegit l'argument _na.rm=TRUE_ a la funció _mean_, que ser
 
 
 ```R
-head(retard.per.hora, 20)
+head(retard.per.hora)
 ```
 
 
 <table>
+<thead><tr><th scope=col>time</th><th scope=col>retard</th><th scope=col>n</th></tr></thead>
 <tbody>
-  <tr><td>time      </td><td>    retard</td><td>  n       </td></tr>
-	<tr><td>1.100000  </td><td>       NaN</td><td>  1       </td></tr>
-	<tr><td>5.000000  </td><td> -6.476471</td><td>341       </td></tr>
-	<tr><td>5.016667  </td><td>-12.000000</td><td>  1       </td></tr>
-	<tr><td>5.083333  </td><td>-26.500000</td><td>  2       </td></tr>
-	<tr><td>5.166667  </td><td>-15.600000</td><td>  5       </td></tr>
-	<tr><td>5.250000  </td><td> -9.551220</td><td>208       </td></tr>
-	<tr><td>5.266667  </td><td>-25.750000</td><td>  4       </td></tr>
-	<tr><td>5.283333  </td><td> -2.888889</td><td> 28       </td></tr>
-	<tr><td>5.333333  </td><td>-17.142857</td><td>  7       </td></tr>
-	<tr><td>5.416667  </td><td> -2.432432</td><td> 37       </td></tr>
-	<tr><td>5.450000  </td><td> -6.000000</td><td>  1       </td></tr>
-	<tr><td>5.466667  </td><td> -2.000000</td><td>  1       </td></tr>
-	<tr><td>5.483333  </td><td> -5.285714</td><td>  7       </td></tr>
-	<tr><td>5.500000  </td><td> -2.779412</td><td>137       </td></tr>
-	<tr><td>5.566667  </td><td> -7.200000</td><td>  5       </td></tr>
-	<tr><td>5.583333  </td><td>-14.833333</td><td>  6       </td></tr>
-	<tr><td>5.600000  </td><td> -7.413793</td><td> 29       </td></tr>
-	<tr><td>5.616667  </td><td> 14.000000</td><td>  1       </td></tr>
-	<tr><td>5.633333  </td><td> -8.500000</td><td>  4       </td></tr>
-	<tr><td>5.650000  </td><td>-12.750000</td><td>  4       </td></tr>
+	<tr><td>5.000000   </td><td> -5.0049505</td><td>203        </td></tr>
+	<tr><td>5.016667   </td><td>-12.0000000</td><td>  1        </td></tr>
+	<tr><td>5.083333   </td><td>-21.0000000</td><td>  1        </td></tr>
+	<tr><td>5.166667   </td><td> -9.7500000</td><td>  4        </td></tr>
+	<tr><td>5.250000   </td><td> -8.3310345</td><td>147        </td></tr>
+	<tr><td>5.283333   </td><td>  0.3043478</td><td> 24        </td></tr>
 </tbody>
 </table>
 
@@ -328,33 +363,56 @@ head(retard.per.hora, 20)
 
 ### d) Grafica el retard mitjà versus el temps. Escala la mida dels punts segons el nombre de vols. Quines conclusions se’n poden treure?
 
+Per conveni graficarem la variable temporal (*time*) a l'eix de les x.
+
 
 ```R
 ggplot(data = retard.per.hora, aes(time, retard, size = n, color = n)) +
   geom_point() + scale_size_area()
 ```
 
-    Warning message:
-    “Removed 1 rows containing missing values (geom_point).”
+
+![png](output_32_0.png)
 
 
+Ha quedat ben bonic!
 
+Però fins i tot es pot millorar. En el gràfic hem escalat la mida dels punts segons el nombre de vols, i també hem pintat els punts segons el nombre de vols. Ens han quedat punts sobreposats, que impedeixen visualitzar bé totes les àrees del gràfic.
 
-![png](output_22_2.png)
-
-
-Sembla que es pot intuir una relació positiva entre el retard i l'hora de sortida del vol: com més tard surt el vol, amb més retard sembla portar.
-
-## 3. Retard vs. Destí
-
-### a) De manera similar a com s’ha construit la dataframe “retard.per.hora” construirem una dataframe anomenada _retard.per.dest_. El resultat serà una dataframe amb 3 columnes, _dest_, _retard_ i _n_ que contenen, respectivament, el nom de la destinació del vol, el retard del vol i el nombre de vols que han volat a cada destinació. La dataframe tindrà tantes files com destinacions diferents hi hagi.
-
-La pista és que ho fem _de manera similar_. Podem copiar i enganxar el codi anterir i modificar-lo perquè s'adapti al nou problema.
+* Utilitzar `alpha = 0.5` permet donar transparència als punts.
+* `geom_smooth(method = "lm")` afegeix una recta de regressió al gràfic.
 
 
 ```R
-retard.per.dest <- summarise(group_by(vols, dest),
-                            retard = mean(arr_delay, na.rm = TRUE), n = n())
+ggplot(data = retard.per.hora, aes(time, retard, size = n, color = n)) +
+  geom_smooth(method = "lm") +
+  geom_point(alpha = 0.5) +
+  scale_size_area()
+```
+
+    `geom_smooth()` using formula 'y ~ x'
+
+
+
+![png](output_35_1.png)
+
+
+Bé, ara sí que ho donem per bo!
+
+Sembla que es pot intuir una relació positiva entre el retard i l'hora de sortida del vol: com més tard surt el vol, més retard sembla portar.
+
+## 3. Retard vs. destinació
+
+Ara estem interessats en la possible relació entre el retard dels vols i la destinació d'aquests. És possible que certes destinacions acumulin vols amb més retard que d'altres? Això resoldrem en aquest apartat.
+
+### a) De manera similar a com s’ha construit la dataframe *retard.per.hora* construirem una dataframe anomenada _retard.per.dest_. El resultat serà una dataframe amb 3 columnes, _dest_, _retard_ i _n_ que contenen, respectivament, el nom de la destinació del vol, el retard del vol i el nombre de vols que han volat a cada destinació. La dataframe tindrà tantes files com destinacions diferents hi hagi.
+
+La pista és que ho fem _de manera similar_. Podem copiar i enganxar el codi de l'exercici anterior i modificar-lo perquè s'adapti al nou problema.
+
+
+```R
+retard.per.dest <- summarise(group_by(vols, dest), # alerta! agrupem per la variable "dest", aquest cop!
+                             retard = mean(arr_delay, na.rm = TRUE), n = n()) # la resta és igual :)
 ```
 
 ### b) Visualitza _retard.per.dest_.
@@ -363,118 +421,192 @@ Fixeu-vos en com hem afegit l'argument _na.rm=TRUE_ a la funció _mean_, que ser
 
 
 ```R
-head(retard.per.dest, 20)
+head(retard.per.dest)
 ```
 
 
 <table>
+<thead><tr><th scope=col>dest</th><th scope=col>retard</th><th scope=col>n</th></tr></thead>
 <tbody>
-	<tr><td>dest     </td><td> retard  </td><td>  n      </td></tr>
-	<tr><td>ABQ      </td><td> 4.381890</td><td>  254    </td></tr>
-	<tr><td>ACK      </td><td> 4.852273</td><td>  265    </td></tr>
-	<tr><td>ALB      </td><td>14.397129</td><td>  439    </td></tr>
-	<tr><td>ANC      </td><td>-2.500000</td><td>    8    </td></tr>
-	<tr><td>ATL      </td><td>11.300113</td><td>17215    </td></tr>
-	<tr><td>AUS      </td><td> 6.019909</td><td> 2439    </td></tr>
-	<tr><td>AVL      </td><td> 8.003831</td><td>  275    </td></tr>
-	<tr><td>BDL      </td><td> 7.048544</td><td>  443    </td></tr>
-	<tr><td>BGR      </td><td> 8.027933</td><td>  375    </td></tr>
-	<tr><td>BHM      </td><td>16.877323</td><td>  297    </td></tr>
-	<tr><td>BNA      </td><td>11.812459</td><td> 6333    </td></tr>
-	<tr><td>BOS      </td><td> 2.914392</td><td>15508    </td></tr>
-	<tr><td>BQN      </td><td> 8.245495</td><td>  896    </td></tr>
-	<tr><td>BTV      </td><td> 8.950996</td><td> 2589    </td></tr>
-	<tr><td>BUF      </td><td> 8.945952</td><td> 4681    </td></tr>
-	<tr><td>BUR      </td><td> 8.175676</td><td>  371    </td></tr>
-	<tr><td>BWI      </td><td>10.726734</td><td> 1781    </td></tr>
-	<tr><td>BZN      </td><td> 7.600000</td><td>   36    </td></tr>
-	<tr><td>CAE      </td><td>41.764151</td><td>  116    </td></tr>
-	<tr><td>CAK      </td><td>19.698337</td><td>  864    </td></tr>
+	<tr><td>ABQ       </td><td> 5,5740741</td><td>  108     </td></tr>
+	<tr><td>ACK       </td><td>-0,8695652</td><td>   23     </td></tr>
+	<tr><td>ALB       </td><td>20,0694444</td><td>  304     </td></tr>
+	<tr><td>ATL       </td><td> 7,4182126</td><td>10240     </td></tr>
+	<tr><td>AUS       </td><td> 5,7120894</td><td> 1449     </td></tr>
+	<tr><td>AVL       </td><td> 9,1578947</td><td>  103     </td></tr>
 </tbody>
 </table>
 
 
 
-### c) Uneix-li la informació d’aeroports (noms i llocs en forma de latitud i longitud). Es pot fer mitjançant la comanda _left_join_ del paquet _dplyr_ o bé amb la comanda _merge_ de R base.  Cal tenir en compte que en una dataframe els noms dels aeroports de destinació estan a la variable _dest_ i en l'altra a la variable _faa_.
+Té bona pinta! Però volem més: resulta que hem llegit a l'inici de l'exercici un fitxer anomenat "airports.csv" a la variable _aero_, i ara és el moment de fer-la servir:
+
+
+```R
+head(aero, 3)
+```
+
+
+<table>
+<thead><tr><th scope=col>X</th><th scope=col>faa</th><th scope=col>name</th><th scope=col>lat</th><th scope=col>lon</th><th scope=col>alt</th><th scope=col>tz</th><th scope=col>dst</th><th scope=col>tzone</th></tr></thead>
+<tbody>
+	<tr><td>1                            </td><td>04G                          </td><td>Lansdowne Airport            </td><td>41,13047                     </td><td>-80,61958                    </td><td>1044                         </td><td>-5                           </td><td>A                            </td><td>America/New_York             </td></tr>
+	<tr><td>2                            </td><td>06A                          </td><td>Moton Field Municipal Airport</td><td>32,46057                     </td><td>-85,68003                    </td><td> 264                         </td><td>-6                           </td><td>A                            </td><td>America/Chicago              </td></tr>
+	<tr><td>3                            </td><td>06C                          </td><td>Schaumburg Regional          </td><td>41,98934                     </td><td>-88,10124                    </td><td> 801                         </td><td>-6                           </td><td>A                            </td><td>America/Chicago              </td></tr>
+</tbody>
+</table>
+
+
+
+Aquesta *data.frame* conté les latituds i longituds (les coordenades!) dels diferents aeroports d'Estats Units, i això ens pot servir per fer una bonica visualització.
+
+### c) Uneix-li la informació d’aeroports (noms i llocs en forma de latitud i longitud). Es pot fer mitjançant la comanda *left_join* del paquet _dplyr_.  Cal tenir en compte que en una dataframe els noms dels aeroports de destinació estan a la variable _dest_ i en l'altra a la variable _faa_.
 
 Podem utilitzar la següent construcció (en _dplyr_):
 
-retard.per.dest <- left\_join(x = retard.per.dest, y = ...,
-                             by = c("dest" = "faa"))
-
-Com a l'inici, convé primer guardar la informació d'aeroports, que es troba a _airports_ en una variable nostra, que anomenarem _aeroports_.
+`retard.per.dest.geo <- left_join(x = retard.per.dest, y = ...,
+                               by = c("dest" = "faa"))     `
 
 
 ```R
-aeroports <- airports
+retard.per.dest.geo <- left_join(x = retard.per.dest,    # la taula de l'esquerra, la principal
+                             y = aero,               # la taula que volem unir
+                             by = c("dest" = "faa")) # les columnes per les quals volem unir
 ```
 
+    Warning message:
+    “Column `dest`/`faa` joining factors with different levels, coercing to character vector”
 
-```R
-retard.per.dest <- left_join(x = retard.per.dest, y = aeroports,
-                                   by = c("dest" = "faa"))
-```
-
-En base R seria:
+En base R (sense utilitzar funcions del paquet *dplyr*) seria:
 
 
 ```R
-retard.per.dest <- merge(x = retard.per.dest, y = aeroports,
-                          by.x = "dest", by.y = "faa",
-                          all.x = TRUE, all.y = FALSE)
+retard.per.dest.geo <- merge(x = retard.per.dest,
+                         y = aero,
+                         by.x = "dest", by.y = "faa",
+                         all.x = TRUE, all.y = FALSE)
 ```
 
 Tots els dos codis anteriors fan el mateix.
 
-### d) Grafica latitud versus longitud i escala la mida dels punts segons el nombre de vols.
-
-Recorda l'estructura bàsica d'una crida a ggplot:
-
-ggplot(data = ..., aes(..., ..., size = ...)) + geom\_point()
+Observem com ha quedat la taula que seguidament graficarem:
 
 
 ```R
-ggplot(data = retard.per.dest, aes(lon, lat, size = n, color = n)) + geom_point()
+head(retard.per.dest.geo, 5)
+```
+
+
+<table>
+<thead><tr><th scope=col>dest</th><th scope=col>retard</th><th scope=col>n</th><th scope=col>X</th><th scope=col>name</th><th scope=col>lat</th><th scope=col>lon</th><th scope=col>alt</th><th scope=col>tz</th><th scope=col>dst</th><th scope=col>tzone</th></tr></thead>
+<tbody>
+	<tr><td>ABQ                              </td><td> 5,5740741                       </td><td>  108                            </td><td> 88                              </td><td>Albuquerque International Sunport</td><td>35,04022                         </td><td>-106,60919                       </td><td>5355                             </td><td>-7                               </td><td>A                                </td><td>America/Denver                   </td></tr>
+	<tr><td>ACK                              </td><td>-0,8695652                       </td><td>   23                            </td><td> 92                              </td><td>Nantucket Mem                    </td><td>41,25305                         </td><td> -70,06018                       </td><td>  48                             </td><td>-5                               </td><td>A                                </td><td>America/New_York                 </td></tr>
+	<tr><td>ALB                              </td><td>20,0694444                       </td><td>  304                            </td><td>119                              </td><td>Albany Intl                      </td><td>42,74827                         </td><td> -73,80169                       </td><td> 285                             </td><td>-5                               </td><td>A                                </td><td>America/New_York                 </td></tr>
+	<tr><td>ATL                              </td><td> 7,4182126                       </td><td>10240                            </td><td>154                              </td><td>Hartsfield Jackson Atlanta Intl  </td><td>33,63672                         </td><td> -84,42807                       </td><td>1026                             </td><td>-5                               </td><td>A                                </td><td>America/New_York                 </td></tr>
+	<tr><td>AUS                              </td><td> 5,7120894                       </td><td> 1449                            </td><td>161                              </td><td>Austin Bergstrom Intl            </td><td>30,19453                         </td><td> -97,66989                       </td><td> 542                             </td><td>-6                               </td><td>A                                </td><td>America/Chicago                  </td></tr>
+</tbody>
+</table>
+
+
+
+Vaja. Ens agradaria prou més que només contingués les columnes d'interès. Enlloc d'eliminar-les, però, el que farem serà modificar el codi perquè ja no les seleccioni:
+
+
+```R
+retard.per.dest.geo <- left_join(x = retard.per.dest,    # la taula de l'esquerra, la principal
+                             y = aero[c("lat", "lon", "faa")],
+                             # la taula que volem unir, però només les columnes d'interès i la columna d'unió
+                             by = c("dest" = "faa")) # les columnes per les quals volem unir
 ```
 
     Warning message:
-    “Removed 4 rows containing missing values (geom_point).”
+    “Column `dest`/`faa` joining factors with different levels, coercing to character vector”
+
+
+```R
+head(retard.per.dest.geo, 5)
+```
+
+
+<table>
+<thead><tr><th scope=col>dest</th><th scope=col>retard</th><th scope=col>n</th><th scope=col>lat</th><th scope=col>lon</th></tr></thead>
+<tbody>
+	<tr><td>ABQ       </td><td> 5,5740741</td><td>  108     </td><td>35,04022  </td><td>-106,60919</td></tr>
+	<tr><td>ACK       </td><td>-0,8695652</td><td>   23     </td><td>41,25305  </td><td> -70,06018</td></tr>
+	<tr><td>ALB       </td><td>20,0694444</td><td>  304     </td><td>42,74827  </td><td> -73,80169</td></tr>
+	<tr><td>ATL       </td><td> 7,4182126</td><td>10240     </td><td>33,63672  </td><td> -84,42807</td></tr>
+	<tr><td>AUS       </td><td> 5,7120894</td><td> 1449     </td><td>30,19453  </td><td> -97,66989</td></tr>
+</tbody>
+</table>
 
 
 
+Aquesta línia selecciona només aquelles files de la nostra _data.frame_ que no continguin cap valor *NA*.
 
-![png](output_41_2.png)
+
+```R
+retard.per.dest.geo <- retard.per.dest.geo[complete.cases(retard.per.dest.geo), ] # Keep only the complete rows
+```
+
+Molt més net! Amb aquesta taula farem la resta de gràfics per analitzar la relació entre la destinació dels vols i el seu retard.
+
+### d) Grafica latitud versus longitud i escala la mida dels punts segons el nombre de vols.
+
+L'estructura bàsica d'una crida a ggplot és:
+
+`ggplot(data = ..., aes(..., ..., size = ...)) + geom_point()`
 
 
-També podem afegir _color = n_ per pintar els punts amb tonalitats de blau segons tinguin una _n_ major o menor.
+```R
+ggplot(data = retard.per.dest.geo,
+       aes(lon, lat, size = n, color = retard)) +
+  geom_point(alpha = 0.5)
+```
+
+
+![png](output_64_0.png)
+
+
+La mida dels punts està graficada segons el nombre de vols a cada destinació, i el color segons el retard.
 
 ### e) Afegeix un mapa dels Estats Units sobre el gràfic. Instal·la i carrega el paquet _maps_. Afegeix "+ borders() + geom\_point()" a la crida del gràfic per mostrar el mapa del món i "+ borders(database = "state", size = 0.5) + geom\_point()" per mostrar només el mapa dels Estats Units.
 
 
 ```R
-ggplot(data = retard.per.dest, aes(lon, lat, size = n, color = n)) +
-geom_point() + borders(database = "state", size = 0.5)
+ggplot(data = retard.per.dest.geo,
+       aes(lon, lat, size = n, color = retard)) +
+  geom_point(alpha = 0.5) +
+  borders(database = "state", size = 0.5)
 ```
 
-    Warning message:
-    “Removed 4 rows containing missing values (geom_point).”
 
-
-
-
-![png](output_44_2.png)
+![png](output_67_0.png)
 
 
 
 ```R
-ggplot(data = retard.per.dest, aes(lon, lat, size = n, color = n)) +
-geom_point() + borders()
+ggplot(data = retard.per.dest.geo,
+       aes(lon, lat, size = n, color = retard)) +
+  geom_point(alpha = 0.5) +
+  borders()
 ```
 
-    Warning message:
-    “Removed 4 rows containing missing values (geom_point).”
+
+![png](output_68_0.png)
 
 
+Fins aquí hem utilitzat el paquet *ggplot2* per fer els gràfics. I ens ha estat ben útil! Hem pogut identificar quins aeroports acumulen més retard, i els hem pogut visualitzar al mapa.
+
+Quan es tracta de mapes, podem utilitzar també el paquet *leaflet*, que ajuda a crear visualitzacions molt boniques.
 
 
-![png](output_45_2.png)
+```R
+m <- leaflet() %>%
+  addTiles() %>%  # Add default OpenStreetMap map tiles
+  addMarkers(lng=retard.per.dest.geo$lon, lat=retard.per.dest.geo$lat,
+             popup = paste("<strong>Destination:</strong>", retard.per.dest.geo$dest,
+                           "</br><Strong>Retard:</Strong>", sprintf("%3.1f", retard.per.dest.geo$retard))
+             )
+m  # Print the map
+```
