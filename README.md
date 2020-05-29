@@ -84,19 +84,27 @@ Es poden fer moltes correlacions, però recordeu que correlació no implica caus
 
 # 4. Següents passos
 
-Check this out:
-- [swirl](http://swirlstats.com/scn/)
-- [manipulate](https://support.rstudio.com/hc/en-us/articles/200551906-Interactive-Plotting-with-Manipulate)
-- [Shiny](https://shiny.rstudio.com/)
-- [R Notebook](http://rmarkdown.rstudio.com/r_notebooks.html)
-- [DataCamp](https://www.datacamp.com/)
-- [Coursera](https://www.coursera.org/specializations/jhu-data-science)
+- [swirl](http://swirlstats.com/scn/): es tracta d'un paquet d'R que s'instal·la com qualsevol paquet d'R (a través de la funció `install.packages()` i permet aprendre R des de la mateixa consola. Es poden aprendre des dels temes més bàsics fins a funcions prou avançades de regressió lineal múltiple i inferència estadstica.
+
+![png](swirl.png)
+
+- [manipulate](https://support.rstudio.com/hc/en-us/articles/200551906-Interactive-Plotting-with-Manipulate): és un paquet per fer gràfics interactius, per ser manipulats des d'R mateix.
+
+- [Shiny](https://shiny.rstudio.com/): és un paquet d'R molt famós, que serveix per fer aplicacions online interactives. Un bon exemple és el tutorial interactiu del qual hem parlat durant la sessió, que està fet amb Shiny. RStudio manté una galeria força completa d'aplicacions públiques fetes amb aquesta llibreria: https://shiny.rstudio.com/gallery/ . Això permet fer aplicacions interactives utilitzant R com a motor però que es poden utilitzar des del navegador web, sense ser necessària una instal·lació d'R.
+
+- [R Notebook](http://rmarkdown.rstudio.com/r_notebooks.html): és una manera força còmode i fàcil d'aprendre de combinar en un mateix fitxer trossos de codi, l'execució si s'escau d'aquest codi i explicacions ben formatades. La segona part d'aquesta web, que conté un exercici resolt, n'és un bon exemple: combina codi, explicacions i gràfics, que estan produïts per codi.
+
+- [DataCamp](https://www.datacamp.com/): és un centre de formació online sobre les eines i habilitats relacionades amb l'anàlisi de dades.
+
+- [Coursera](https://www.coursera.org/specializations/jhu-data-science): és un centre de formació online més generalista; el link que es proporciona, però, redirigeix a un curs de *Data Science* amb R molt interessant.
 
 <br><br>
 
 
 _Josep Anton Mir Tutusaus. 2020 ._
 
+<br><br>
+<br><br>
 <br><br>
 <br><br>
 
