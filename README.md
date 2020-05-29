@@ -188,7 +188,7 @@ head(vols, 5)
 
 
 <table>
-<thead><tr><th scope=col>X</th><th scope=col>year</th><th scope=col>month</th><th scope=col>day</th><th scope=col>dep_time</th><th scope=col>sched_dep_time</th><th scope=col>dep_delay</th><th scope=col>arr_time</th><th scope=col>sched_arr_time</th><th scope=col>arr_delay</th><th scope=col>carrier</th><th scope=col>flight</th><th scope=col>tailnum</th><th scope=col>origin</th><th scope=col>dest</th><th scope=col>air_time</th><th scope=col>distance</th><th scope=col>hour</th><th scope=col>minute</th><th scope=col>time_hour</th></tr></thead>
+<thead><tr><th>X</th><th>year</th><th>month</th><th>day</th><th>dep_time</th><th>sched_dep_time</th><th>dep_delay</th><th>arr_time</th><th>sched_arr_time</th><th>arr_delay</th><th>carrier</th><th>flight</th><th>tailnum</th><th>origin</th><th>dest</th><th>air_time</th><th>distance</th><th>hour</th><th>minute</th><th>time_hour</th></tr></thead>
 <tbody>
 	<tr><td>1                  </td><td>2013               </td><td>1                  </td><td>1                  </td><td>517                </td><td>515                </td><td> 2                 </td><td> 830               </td><td> 819               </td><td> 11                </td><td>UA                 </td><td>1545               </td><td>N14228             </td><td>EWR                </td><td>IAH                </td><td>227                </td><td>1400               </td><td>5                  </td><td>15                 </td><td>2013-01-01 05:00:00</td></tr>
 	<tr><td>2                  </td><td>2013               </td><td>1                  </td><td>1                  </td><td>533                </td><td>529                </td><td> 4                 </td><td> 850               </td><td> 830               </td><td> 20                </td><td>UA                 </td><td>1714               </td><td>N24211             </td><td>LGA                </td><td>IAH                </td><td>227                </td><td>1416               </td><td>5                  </td><td>29                 </td><td>2013-01-01 05:00:00</td></tr>
@@ -293,7 +293,7 @@ head(vols[c("origin", "dest", "arr_delay", "hour", "minute")], 3)
 
 
 <table>
-<thead><tr><th scope=col>origin</th><th scope=col>dest</th><th scope=col>arr_delay</th><th scope=col>hour</th><th scope=col>minute</th></tr></thead>
+<thead><tr><th>origin</th><th>dest</th><th>arr_delay</th><th>hour</th><th>minute</th></tr></thead>
 <tbody>
 	<tr><td>EWR</td><td>IAH</td><td>11 </td><td>5  </td><td>15 </td></tr>
 	<tr><td>LGA</td><td>IAH</td><td>20 </td><td>5  </td><td>29 </td></tr>
@@ -319,7 +319,7 @@ head(vols, 1)
 
 
 <table>
-<thead><tr><th scope=col>X</th><th scope=col>year</th><th scope=col>month</th><th scope=col>day</th><th scope=col>dep_time</th><th scope=col>sched_dep_time</th><th scope=col>dep_delay</th><th scope=col>arr_time</th><th scope=col>sched_arr_time</th><th scope=col>arr_delay</th><th scope=col>...</th><th scope=col>flight</th><th scope=col>tailnum</th><th scope=col>origin</th><th scope=col>dest</th><th scope=col>air_time</th><th scope=col>distance</th><th scope=col>hour</th><th scope=col>minute</th><th scope=col>time_hour</th><th scope=col>time</th></tr></thead>
+<thead><tr><th>X</th><th>year</th><th>month</th><th>day</th><th>dep_time</th><th>sched_dep_time</th><th>dep_delay</th><th>arr_time</th><th>sched_arr_time</th><th>arr_delay</th><th>...</th><th>flight</th><th>tailnum</th><th>origin</th><th>dest</th><th>air_time</th><th>distance</th><th>hour</th><th>minute</th><th>time_hour</th><th>time</th></tr></thead>
 <tbody>
 	<tr><td>1                  </td><td>2013               </td><td>1                  </td><td>1                  </td><td>517                </td><td>515                </td><td>2                  </td><td>830                </td><td>819                </td><td>11                 </td><td>...                </td><td>1545               </td><td>N14228             </td><td>EWR                </td><td>IAH                </td><td>227                </td><td>1400               </td><td>5                  </td><td>15                 </td><td>2013-01-01 05:00:00</td><td>5.25               </td></tr>
 </tbody>
@@ -348,7 +348,7 @@ head(retard.per.hora)
 
 
 <table>
-<thead><tr><th scope=col>time</th><th scope=col>retard</th><th scope=col>n</th></tr></thead>
+<thead><tr><th>time</th><th>retard</th><th>n</th></tr></thead>
 <tbody>
 	<tr><td>5.000000   </td><td> -5.0049505</td><td>203        </td></tr>
 	<tr><td>5.016667   </td><td>-12.0000000</td><td>  1        </td></tr>
@@ -426,7 +426,7 @@ head(retard.per.dest)
 
 
 <table>
-<thead><tr><th scope=col>dest</th><th scope=col>retard</th><th scope=col>n</th></tr></thead>
+<thead><tr><th>dest</th><th>retard</th><th>n</th></tr></thead>
 <tbody>
 	<tr><td>ABQ       </td><td> 5,5740741</td><td>  108     </td></tr>
 	<tr><td>ACK       </td><td>-0,8695652</td><td>   23     </td></tr>
@@ -448,7 +448,7 @@ head(aero, 3)
 
 
 <table>
-<thead><tr><th scope=col>X</th><th scope=col>faa</th><th scope=col>name</th><th scope=col>lat</th><th scope=col>lon</th><th scope=col>alt</th><th scope=col>tz</th><th scope=col>dst</th><th scope=col>tzone</th></tr></thead>
+<thead><tr><th>X</th><th>faa</th><th>name</th><th>lat</th><th>lon</th><th>alt</th><th>tz</th><th>dst</th><th>tzone</th></tr></thead>
 <tbody>
 	<tr><td>1                            </td><td>04G                          </td><td>Lansdowne Airport            </td><td>41,13047                     </td><td>-80,61958                    </td><td>1044                         </td><td>-5                           </td><td>A                            </td><td>America/New_York             </td></tr>
 	<tr><td>2                            </td><td>06A                          </td><td>Moton Field Municipal Airport</td><td>32,46057                     </td><td>-85,68003                    </td><td> 264                         </td><td>-6                           </td><td>A                            </td><td>America/Chicago              </td></tr>
@@ -498,7 +498,7 @@ head(retard.per.dest.geo, 5)
 
 
 <table>
-<thead><tr><th scope=col>dest</th><th scope=col>retard</th><th scope=col>n</th><th scope=col>X</th><th scope=col>name</th><th scope=col>lat</th><th scope=col>lon</th><th scope=col>alt</th><th scope=col>tz</th><th scope=col>dst</th><th scope=col>tzone</th></tr></thead>
+<thead><tr><th>dest</th><th>retard</th><th>n</th><th>X</th><th>name</th><th>lat</th><th>lon</th><th>alt</th><th>tz</th><th>dst</th><th>tzone</th></tr></thead>
 <tbody>
 	<tr><td>ABQ                              </td><td> 5,5740741                       </td><td>  108                            </td><td> 88                              </td><td>Albuquerque International Sunport</td><td>35,04022                         </td><td>-106,60919                       </td><td>5355                             </td><td>-7                               </td><td>A                                </td><td>America/Denver                   </td></tr>
 	<tr><td>ACK                              </td><td>-0,8695652                       </td><td>   23                            </td><td> 92                              </td><td>Nantucket Mem                    </td><td>41,25305                         </td><td> -70,06018                       </td><td>  48                             </td><td>-5                               </td><td>A                                </td><td>America/New_York                 </td></tr>
@@ -530,7 +530,7 @@ head(retard.per.dest.geo, 5)
 
 
 <table>
-<thead><tr><th scope=col>dest</th><th scope=col>retard</th><th scope=col>n</th><th scope=col>lat</th><th scope=col>lon</th></tr></thead>
+<thead><tr><th>dest</th><th>retard</th><th>n</th><th>lat</th><th>lon</th></tr></thead>
 <tbody>
 	<tr><td>ABQ       </td><td> 5,5740741</td><td>  108     </td><td>35,04022  </td><td>-106,60919</td></tr>
 	<tr><td>ACK       </td><td>-0,8695652</td><td>   23     </td><td>41,25305  </td><td> -70,06018</td></tr>
@@ -610,3 +610,4 @@ m <- leaflet() %>%
              )
 m  # Print the map
 ```
+![png](leaflet.png)
