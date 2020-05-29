@@ -1,0 +1,13 @@
+name: introduction-r-tutorial
+title: introduction-r-tutorial
+username:
+account: jamirtutusaus
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 2304496
+bundleId: 3201404
+url: https://jamirtutusaus.shinyapps.io/introduction-r-tutorial/
+when: 1590687039.76186
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: tutorial_commands.txt|R_files/figure-html/plot-vector1-1.png|R_files/figure-html/plot-vector2-1.png|R_files/figure-html/plot-vector3-1.png

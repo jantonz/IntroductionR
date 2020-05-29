@@ -1,135 +1,547 @@
 ---
-title: "Tutorial"
+title: "Tutorial d'introducció a R"
 output: learnr::tutorial
 runtime: shiny_prerendered
+web_url: "https://jamirtutusaus.shinyapps.io/introduction-r-tutorial/"
 ---
 
 ```{r setup, include=FALSE}
 library(learnr)
 knitr::opts_chunk$set(echo = FALSE)
+
+x <- 42
+sentence <- c("walk", "the", "dog", "to")
+M <- matrix(1:12, 3, 4)
 ```
 
 
+## Tema 1: Utilitzant R
 
-## Topic 1: Using R
+### Utilitza R com a calculadora 
 
-### Use R as a calculator 
-
-Write ```2 + 2``` in the following code chunk:
+Escriu ```2 + 2``` al següent rectangle per a codi:
 
 ```{r two-plus-two, exercise=TRUE}
 
 ```
 
-Write the R code required to multiply six times seven:
+Escriu el codi adient per multiplicar 6 per 7:
 
 ```{r six-times-seven, exercise=TRUE}
 
 ```
 
-So we can use R as a calculator. Cool.
+Podem utilitzar R com una calculadora. Bé!
 
-Now write ```"Arr!"```. Don't forget the quotes:
-```{r arr, exercise=TRUE}
+### Hola món! 
+
+Aquest sí que és l'exercici típic: escriu ```"Hola món!"```. No t'oblidis les cometes, sobretot:
+```{r hello-world, exercise=TRUE}
 
 ```
 
-That was not a number. That was not *numeric*. That was a *character*, a *string*.
+Això no era un número. Això no era *numeric* (*num*, per abraviar). El nostra "Hola món" és una cadena de caracters, és a dir, del tipus *character*, també anomenat *string* (*chr*, per abraviar).
 
-Everything between quotes is considered a string. Try to write ```"2+2+"```; this is also a string! 
+Tot el que estigui entre cometes es considera una cadena de caracters. Prova d'escriure ```"2+2+"```; també és una cadena de caracters (encara que hi veiem números)! 
 ```{r string-sum, exercise=TRUE}
 
 ```
 
-Double quotes, single quotes, all are the same (just do not mix them). Write now ```'Arr! in single quotes'```. 
-```{r arr-single, exercise=TRUE}
+Cometes dobles (""), cometes simples (''), per R tot significa el mateix (no les barregeu, però). Escriu ara ```'Hola món! en cometes simples'```. 
+```{r hello-world-single, exercise=TRUE}
 
 ```
 
-Let's move now to *boolean* values. Write ```TRUE```, ALL IN CAPS, no quotes.
+### Valors i operadors lògics 
+
+Veiem ara els objectes de tipus *logical*, o *boolean* (*log*, per abraviar). Escriu ```TRUE```, EN MAJÚSCULES, i sense cometes.
 ```{r true, exercise=TRUE}
 
 ```
 
-Write now ```FALSE```, ALL IN CAPS, no quotes.
-```{r arr-single, exercise=TRUE}
+Escriu ara ```FALSE```, EN MAJÚSCULES, i sense cometes.
+```{r false, exercise=TRUE}
 
 ```
 
-Note that the programming language R did not add quotes to those words. ```TRUE``` and ```FALSE``` are *reserved* words.
+Fixeu-vos que el llenguatge de programació R no ha afegit cometes a aquestes paraules. Resulta que ```TRUE``` i ```FALSE``` son paraules *reservades*. I clar, van sense cometes, perquè no són pas cadenes de caracters, sinó valors lògics, del tipus *log*.
 
-## Topic 2: Vectors
+També existeixen operadors lògics, que es poden utilitzar igual que els operadors matemàtics que hem vist.
 
-## Topic 3: Matrices
+Escriu ```2 < 6```. Es podria llegir com "és 2 menor que 6"?. La resposta ens agradaria que fos "sí".
+```{r lower, exercise=TRUE}
 
-## Topic 4: Summary Statistics
+```
+Bé, la resposta ha estat ```TRUE```, no està malament!
 
-## Topic 5: Factors
-
-## Topic 6: Data Frames
-
-
-
-## Topic 1
-
-### Exercise 
-
-*Here's a simple exercise with an empty code chunk provided for entering the answer.*
-
-Write the R code required to add two plus two:
-
-```{r two-plus-twoo, exercise=TRUE}
+Proveu de comprovar si 3 és el mateix que 3 en aquest rectangle:
+```{r equal, exercise=TRUE}
 
 ```
 
-### Exercise with Code
+```{r equal-solution}
+3 == 3
+```
 
-*Here's an exercise with some prepopulated code as well as `exercise.lines = 5` to provide a bit more initial room to work.*
+Certament, l'exercici té trampa. Resulta que el símbol "=" no és l'operador lògic d'igualtat. El símbol correcte és el següent: "==". Proveu-ho ara.
 
-Now write a function that adds any two numbers and then call it:
+El següent codi:
+```{r true-false, echo=TRUE}
+TRUE == T
+FALSE == F
+```
+ha demostrat que és equivalent escriure "T" i "TRUE", o bé "F" i "FALSE". Són quatre caracters que ens podem estalviar.
 
-```{r add-function, exercise=TRUE, exercise.lines = 5}
-add <- function() {
-  
+## Tema 2: Introducció a les funcions
+
+Aquí podeu veure la funció ```sum```, que està integrada a R i el que fa és fer una suma. Executeu el codi següent:
+```{r fun1, exercise=TRUE}
+sum(2, 2)
+```
+
+Bé, les *funcions* en R tenen la forma __fun(arg1, arg2, arg3, ...)__. Sempre tenen parèntesis, i dins dels parèntesis poden contenir *arguments* separats per comes. En el cas de la funció ```sum```, hem utilitzat un 2 com a primer argument i un altre 2 com a segon argument.
+
+També es poden fer funcions personalitzades, però això és un tema per més endavant. Aquí en podeu veure un exemple:
+```{r fun2, exercise=TRUE}
+suma_de_dos_numeros <- function(a, b){
+  a + b
 }
+
+suma_de_dos_numeros(1, 4)
 ```
 
-## Topic 2
 
-### Exercise with Hint
+## Tema 3: Variables
 
-*Here's an exercise where the chunk is pre-evaulated via the `exercise.eval` option (so the user can see the default output we'd like them to customize). We also add a "hint" to the correct solution via the chunk immediate below labeled `print-limit-hint`.*
+El concepte de __variable__ es pot pensar com un recipient que pot contenir multitud d'objectes.
+En aquesta línia de codi es crea una variable x, inicialitzada amb el valor 42:
 
-Modify the following code to limit the number of rows printed to 5:
-
-```{r print-limit, exercise=TRUE, exercise.eval=TRUE}
-mtcars
+```{r var1, exercise=TRUE}
+x <- 42
 ```
 
-```{r print-limit-hint}
-head(mtcars)
+L'operador d'assignació ```<-``` s'utilitza per assignar valors a variables, i es pot pensar com una fletxa. La línia que acabeu d'executar es podria llegir de la manera següent: "a la variable x li assigno el valor 42".
+
+Val a dir que el nom de la variable, x, és completament arbitrari. Li pots posar el nom que vulguis a una variable. Creeu una variable que s'anomeni *cinc* i contingui el número 5.
+```{r var2, exercise=TRUE}
+
+```
+```{r var2-solution}
+cinc <- 5
 ```
 
-### Quiz
+Una variable pot contenir qualsevol tipus d'objecte. Creeu una variable anomenada *mot* que contingui un valor del tipus caracter.
+```{r var3, exercise=TRUE}
 
-*You can include any number of single or multiple choice questions as a quiz. Use the `question` function to define a question and the `quiz` function for grouping multiple questions together.*
+```
+```{r var3-hint}
+mot <- "aquest és un valor del tipus caracter, perquè té cometes"
+```
 
-Some questions to verify that you understand the purposes of various base and recommended R packages:
+Recordeu la variable *x* que hem creat fa uns moments?
+```{r var4}
+x
+```
+Ara mateix val 42.
 
-```{r quiz}
+```{r quiz-var}
 quiz(
-  question("Which package contains functions for installing other R packages?",
-    answer("base"),
-    answer("tools"),
-    answer("utils", correct = TRUE),
-    answer("codetools")
-  ),
-  question("Which of the R packages listed below are used to create plots?",
-    answer("lattice", correct = TRUE),
-    answer("tools"),
-    answer("stats"),
-    answer("grid", correct = TRUE)
+  question("Si executo el següent codi: ```x / 2```, quin valor conté x?",
+    answer("42"),
+    answer("x"),
+    answer("21", correct = TRUE)
   )
 )
 ```
 
+## Tema 4: Vectors
+
+### Vectors numèrics
+
+De manera senzilla i no vinculant, podem dir que un vector és un seguit de números.
+
+Crear un vector en R és tan fàcil com escriure ```1:5```:
+```{r vector1, exercise=TRUE}
+
+```
+
+I també pot anar enrere! ```5:1```:
+```{r vector2, exercise=TRUE}
+
+```
+
+Podeu jugar una mica fent vectors, que poden ser molt llargs:
+```{r vector3, exercise=TRUE, exercise.lines = 5}
+
+```
+
+Fins ara hem fet només vectors *numèrics*, *consecutius* i d'un en un. Per donar una mica més de flexibilitat es pot utilitzar la funció ```seq```. Observeu què fa la funció:
+```{r vector4, exercise=TRUE, exercise.eval=TRUE}
+seq(1, 5)
+```
+Efectivament, la funció ```seq``` crea un vector numèric i consecutiu, iniciat al valor que li passis com a primer argument (en aquest cas, 1) i que acaba al valor que li passis com a segon argument (en aquest cas, 5).
+
+Quina poca utilitat, si fa el mateix que ```1:5```. A més, l'operador *:* és força més elegant! Bé, la flexibilitat que dóna la funció ```seq``` prové del tercer argument, que li diu el __pas__ que ha d'utilitzar. Aquí en podeu veure un exemple (executeu el codi):
+```{r vector5, exercise=TRUE}
+seq(1, 5, 0.5)
+```
+Això continua essent un vector numèric i consecutiu... com podríem crear un vector numèric no consecutiu? En R, es crea mitjançant la funció __combine__, que se simbolitza amb una __c__ minúscula: ```c```.
+```{r vector6, exercise=TRUE}
+c(1, 3, 4)
+```
+Aquesta funció s'utilitza molt, convé interioritzar-la. 
+
+### Vector no numèrics
+
+De fet, un vector no ha de ser obligatòriament numèric. Podem veure que existeixen també vectors de caracters i de valors lògics.
+
+```{r vector7, exercise=TRUE}
+c("aquest", "és", "un", "vector", "de", "caracters")
+c(TRUE, FALSE, FALSE, T, T, F, F, F)
+```
+
+Només coneixem la funció ```c``` que permeti crear vectors que no siguin numèrics.
+
+Treballem ara amb una variable que contindrà un vector de caracters i anomenarem *sentence*: 
+```{r sentence1, exercise=TRUE}
+sentence <- c("walk", "the", "plank")
+sentence
+```
+
+Perfecte. Ara ens interessa saber com es pot seleccionar una posició del nostre vector. Fixeu-vos que ens estem referint a *sentence* a vegades com a variable i a vegades com a vector.
+Per seleccionar una posició del vector s'utilitza el símbol ```[]```:
+```{r sentence2, exercise=TRUE}
+sentence[1]
+```
+
+Seleccioneu ara la posició 2 del vector, és a dir, "the".
+```{r sentence3, exercise=TRUE}
+
+```
+```{r sentence3-hint}
+sentence[2]
+```
+
+Per *editar*/*modificar* algunes posicions del vector, es fa de la manera següent:
+```{r sentence4, exercise=TRUE}
+sentence[3] <- "dog"
+```
+
+I per afegir posicions al vector, de la següent:
+```{r sentence5, exercise=TRUE}
+sentence[4] <- "to"
+sentence
+```
+
+Fantàstic!
+
+I finalment, l'exercici més difícil fins ara: afegiu, en una sola línia de codi, els valors "the" i "park" al vector *sentence* anterior. Escriviu la línia de codi entre els dos símbols"#".
+```{r sentence6, exercise=TRUE}
+#
+
+#
+sentence
+```
+```{r sentence6-solution}
+sentence[5:6] <- c("the", "park")
+```
+
+Bé, era realment complicat. Es tractava de barrejar els coneixements apresos anteriorment sobre la creació de vectors (operador ```:```), la selecció de posicions d'un vector (```[]```), la funció ```c``` i l'operador d'assignació ```<-```. Déu ni dó per un exercici tan simple a simple vista.
+
+*Els vectors només poden contenir un sol tipus d'objecte: poden ser vectors numèrics, lògics, de caracter; però mai mesclats.*
+
+### Gràfics de vectors
+
+Per graficar un vector només cal utilitzar la funció adient:
+```{r plot-vector1}
+x <- 1:15 # creem les dades
+barplot(x) # funció que grafica el vector x com barres verticals
+```
+
+També es podria graficar de la següent manera:
+```{r plot-vector2}
+x <- 1:15 # creem les dades
+plot(x) # funció que grafica el vector x com un núvol de punts
+```
+
+Però els núvols de punts sovint tenen més sentit per graficar dos vectors a la vegada:
+```{r plot-vector3}
+x <- seq(-6, 6, 0.1)  # creem les dades d'x
+y <- cos(x) # i les dades d'y
+plot(x, y) # funció que grafica el vector x a l'horitzontal i el vector y a la vertical
+```
+
+## Tema 5: Matrius
+
+### Matrius
+
+Com els vectors, les matrius només poden contenir *un sol tipus d'objecte*.
+
+Per crear una matriu es pot utilitzar la funció ```matrix```.
+```{r matrix1, exercise=TRUE}
+M <- matrix(1:12, 3, 4)
+M
+```
+
+Com a primer argument la funció espera un seguit de números (per a construir una matriu numèrica); com a segon argument, s'espera el número de files; com a tercer argument, el nombre de columnes. Per conveni, s'utilitza sempre __files, columnes__.
+
+Per seleccionar un valor de la matriu, s'utilitza els mateixos ```[]``` que amb els vectors. Amb la diferència que com que una matriu té dues dimensions, a dins dels ```[]``` cal posar-hi dos números (dues posicions).
+
+```{r matrix2, exercise=TRUE}
+M[1, 2]
+```
+
+Seleccioneu ara el valor 6 de la matriu.
+```{r matrix3, exercise=TRUE}
+
+```
+
+```{r matrix3-solution}
+M[3, 2]
+```
+
+Una matriu també permet seleccionar files d'aquesta manera:
+```{r matrix4, exercise=TRUE}
+M[1, ]
+```
+
+Hem seleccionat la primera fila. Sabríeu seleccionar la última columna?
+```{r matrix5, exercise=TRUE}
+
+```
+```{r matrix5-solution}
+M[, 4]
+```
+
+Bé!
+
+### Gràfics de matrius
+
+Existeixen algunes funcions especials per graficar matrius. Per fer-ho, però, no utilitzarem la matriu M, sinó que utilitzarem una matriu anomenada __volcano__, que s'ha carregat a R.
+
+La primera funció és ```contour```, que pinta un gràfic d'elevació. Veieu el volcà?
+```{r matrix6, exercise=TRUE}
+contour(volcano)
+```
+
+Una altra manera de representar aquesta matriu és amb la funció ```persp```. Proveu-la tot seguit!
+```{r matrix7, exercise=TRUE}
+
+```
+```{r matrix7-hint}
+persp(volcano, theta = 40)
+```
+
+Si utilitzeu un segon argument a la funció anterior anomenat __theta__ i li assigneu el valor 40 (```theta = 40```), la representació gira 40º i és més fàcil d'entendre.
+
+Una tercera manera és representar els valors de la matriu en una escala de color, de manera que valors més elevats tinguin un color més focs i valors menors un color més clar. Això es fapot fer amb la funció ```image```. Proveu-ho sisplau.
+
+```{r matrix8, exercise=TRUE}
+
+```
+```{r matrix8-solution}
+image(volcano)
+```
+
+## Tema 6: Data Frames
+
+### data.frames
+
+Les __data frames__ són els objectes més similars a un full de càlcul. Es componen de files i de columnes, que sovint tenen nom.
+
+Es poden construir de la següent manera:
+```{r df1, exercise=TRUE}
+data.frame(numeros = 1:5, caracters = rep("lletra", 5))
+```
+
+Però, tot sovint, enlloc de crear __data frames__ amb dades arbitràries, es llegeixen. És a dir, es llegeix un fitxer d'Excel, o bé un full de càlcul de l'OpenOffice, o un fitxer de text pla com un CSV amb R. Això últim és el que s'ha fet en aquest tutorial per vosaltres, utilitzant la següent línia de codi: ```iris <- read.csv("iris.csv")```.
+Això significa que ara teniu una variable carregada al vostre entorn anomenada ```iris``` que conté les dades del fitxer __iris.csv__. En aquesta implementació online del tutorial no teniu permisos per fer la lectura del fitxer, però sí que podeu explorar les dades escrivint ```iris``` a la següent secció de codi:
+
+```{r df2, exercise=TRUE}
+
+```
+```{r df2-solution}
+iris
+```
+
+A vegades les __data frames__ poden ser molt grans (centenars de columnes, milions de files). En aquests casos, explorar les dades directament amb ```iris``` és poc pràctic. En canvi, és molt més interessant utilitzar algunes funcions d'exploració, com les contingudes en la següent llista:
+
+* ```class```
+* ```head```
+* ```tail```
+* ```dim```
+* ```nrow```
+* ```ncol```
+* ```summary```
+* ```str```
+
+En el següent rectangle de codi utilitzeu cadascuna de les funcions sobre la __data frame__ ```iris``` i expliqueu-ne la utilitat utilitzant el caracter "#", que és el símbol de comentari (tot allò que està comentat no s'executa com a codi). Podeu seguir l'exemple següent:
+```{r df2bis, exercise=TRUE}
+class(iris) # indica quin tipus d'ojecte és. En aquest cas, es tracta d'una data.frame
+```
+
+Ara us toca a vosaltres fer el mateix amb la resta de funcions:
+```{r df3, exercise=TRUE, exercise.lines = 20}
+
+```
+```{r df3-solution}
+head(iris) # mostra les sis primeres files de la data.frame i el header
+tail(iris, 2) # mostra les 2 últimes files de la data.frame i el header
+dim(iris) # les dimensions de la data.frame, en forma de "nombre de files, nombre de columnes"
+nrow(iris) # el nombre de files
+dim(iris)[1] # és equivalent a nrow(iris); el que fa és seleccionar la primera posició de dim(iris)
+ncol(iris) # el nombre de columnes
+dim(iris)[2] # és equivalent a ncol(iris); el que fa és seleccionar la segona posició de dim(iris)
+summary(iris) # resum estadístic de les columnes de la data.frame
+str(iris) # et mostra un resum de moltes de les funcions explicades en aquest tros de codi, d'una forma compacta
+```
+
+### Seleccionar columnes de data.frames
+
+Els objectes data.frame s'utilitzen molt i molt sovint. Molt sovint! Com hem vist, un fitxer CSV (però també un fitxer de full de càlcul, o de SPS, o de SAS, etc.) es llegeixen a R com una data.frame. I una acció que es fa molt sovint en data.frames és seleccionar algunes de les seves columnes. Això anem a fer: aprendre a seleccionar columnes de data.frames. I es pot fer de diverses maneres diferents:
+
+```{r df4, exercise = TRUE}
+# Seleccionar la primera columna per posició
+iris[1]
+
+# El resultat és una data.frame
+class(iris[1])
+```
+
+```{r df5, exercise = TRUE}
+# Seleccionar la primera columna per posició, d'una altra manera
+iris[[1]]
+
+# Veieu la diferència?
+# El resultat és un vector
+class(iris[[1]])
+```
+
+```{r df6, exercise = TRUE}
+# Seleccionar la primera columna per nom
+iris["Sepal.Length"]
+
+# El resultat és una data.frame
+class(iris["Sepal.Length"])
+```
+
+```{r df7, exercise = TRUE}
+# Seleccionar la primera columna per nom, d'una altra manera
+iris[["Sepal.Length"]]
+
+# El resultat és un vector
+class(iris[["Sepal.Length"]])
+```
+
+```{r df8, exercise = TRUE}
+# I finalment, la manera més utilitzada per seleccionar una columna (només una)
+iris$Sepal.Length
+
+# El resultat és un vector
+class(iris$Sepal.Length)
+```
+
+Un dels motius per preferir l'ús del símbol del dòlar ```$``` és perquè en diversos programes d'edició de codi (RStudio, per exemple) l'ús del símbol del dòlar obre un diàleg que permet seleccionar amb el cursor la columna d'interès.
+
+### Gràfics amb data.frames
+
+O més ben dit, gràfics amb els vectors (columnes) de les data.frames. M'explico: com hem vist fa un moment, una columna de la data.frame es pot pensar com un vector (així ho fem quan seleccionem una columna amb el símbol del dòlar, per exemple). D'aquesta manera, si sabem graficar vectors, sabem graficar data.frames.
+
+Proveu amb el següent codi, que utilitza la funció ```barplot```, que fa gràfics de barres:
+
+```{r df9, exercise = TRUE}
+barplot(iris$Sepal.Length)
+```
+
+Aquest tipus de gràfics són útils per graficar una sola variable. Ara jugueu a graficar les altres columnes:
+
+```{r df10, exercise = TRUE}
+
+```
+
+Us surt un error en graficar la columna __Species__? Resulta que aquesta columna és una variable categòrica, que no es pot graficar amb aquesta funció.
+
+Si es volen graficar dues variables a la vegada, es pot fer amb la funció ```plot```:
+```{r df11, exercise = TRUE}
+plot(iris$Sepal.Length, iris$Petal.Length)
+```
+Semblen variables correlacionades, no? Fixeu-vos que el primer argument de la funció correspon a la variable que es pinta a l'eix horitzontal, i el segon argument a la columna que es pinta a l'eix de les y.
+
+Proveu de combinar diferents variables i veure quins núvols de punts dibuixen.
+```{r df12, exercise = TRUE}
+
+```
+
+```{r df13, exercise = TRUE}
+
+```
+
+```{r df14, exercise = TRUE}
+
+```
+
+```{r df15, exercise = TRUE}
+
+```
+
+Si en alguna prova heu posat la variable __Species__ a l'eix horitzontal us haureu trobat amb un gràfic similar o igual al següent:
+
+```{r df16, exercise = TRUE}
+plot(iris$Species, iris$Sepal.Length)
+```
+
+Per defecte, quan a la funció ```plot``` se li passa una variable categòrica a l'eix x, el gràfic resultant és un diagrama de caixes ( __box plot__ en anglès).
+
+I finalment, si a algú se li ha acudit utilitzar el següent codi: ```plot(iris)```, haurà tingut una grata sorpresa:
+
+```{r df17, exercise = TRUE}
+plot(iris)
+```
+
+Per defecte, la funció plot grafica totes les variables contra totes les variables quan se li subministra una data.frame sencera. Preciós!
+
+## Tema 7: Factors
+
+Els __factors__ són com R anomena les variables categòriques:
+```{r factor1, exercise = TRUE}
+class(iris$Species)
+```
+
+Fixeu-vos com els valors que observem seguidament no estan envoltats de cometes:
+```{r factor2, exercise = TRUE}
+iris$Species
+```
+
+Normal. Només els objectes de tipus caracter tenen cometes, recordeu?
+```{r factor3, exercise = TRUE}
+class("hola")
+class(c("vector", "de", "caracters"))
+```
+
+Les variables del tipus __factor__ permeten:
+```{r factor4, exercise = TRUE}
+# Convertir-se a tipus numèric, ordenades alfabèticament:
+as.numeric(iris$Species)
+
+# Mostrar quins valors pot prendre la variable:
+levels(iris$Species)
+```
+
+## Tema 8: Funcions estadístiques
+
+Basiquíssimes, vaja:
+```{r mean, exercise = TRUE}
+# La mitjana:
+mean(iris$Sepal.Length)
+
+# La desviació estàndard:
+sd(iris$Sepal.Length)
+
+# La variança:
+var(iris$Sepal.Length)
+
+# Els quantils que vulguem (0, 0.25, 0.5, 0.75 i 1, per defecte):
+quantile(iris$Sepal.Length)
+```
+
+Amb tot l'estudiat fins ara ja teniu els coneixements més bàsics per poder aventurar-vos a seguir aprenent!
