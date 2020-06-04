@@ -25,7 +25,7 @@ Aquesta web utilitza [Markdown](https://daringfireball.net/projects/markdown/) i
 
 ### 0.4. Exercicis
 
-- **Exercici Vols New York 2013:** [link](https://github.com/jantonz/IntroductionR/blob/master/exercices/Exercici%20dplyr.pdf?raw=true)
+- **Exercici Vols New York 2013:** [link](https://github.com/jantonz/IntroductionR/raw/master/exercises/Exercici%20dplyr.pdf)
 
 
 # 1. Introducció a R
